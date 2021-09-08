@@ -8,6 +8,6 @@
 </head>
 <body>
     <h1>You are logged in successfully</h1>
-hello
+
 </body>
 </html>
