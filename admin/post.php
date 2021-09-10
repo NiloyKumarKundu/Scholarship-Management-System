@@ -116,3 +116,5 @@
   </div>
 </div>
 <?php include "footer.php"; ?>
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cum facilis ratione ut aspernatur, impedit debitis blanditiis temporibus quod, deleniti eveniet a nesciunt adipisci, autem ab repellendus. Id, reprehenderit veniam?
