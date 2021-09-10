@@ -20,7 +20,7 @@ if ($_SESSION['user_role'] == '0') {
 
         include "config.php";
 
-        $limit = 3;
+        $limit = 5;
 
         if (isset($_GET['page'])) {
           $page_number = $_GET['page'];

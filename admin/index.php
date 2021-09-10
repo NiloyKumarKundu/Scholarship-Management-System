@@ -47,8 +47,6 @@
 
                         $username = mysqli_real_escape_string($connection, $_POST['username']);
                         $password = md5($_POST['password']);
-                        echo $username." ";
-                        echo $password;
 
                         $query = "SELECT user_id,username,role FROM users WHERE username='{$username}' AND password='{$password}'";
                         $result = mysqli_query($connection, $query) or die("Query Failed.");

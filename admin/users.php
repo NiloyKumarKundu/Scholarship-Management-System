@@ -21,7 +21,7 @@
         } else {
           $page_number = 1;
         }
-        $limit = 3;
+        $limit = 5;
         $offset = ($page_number - 1) * $limit;
 
         $query = "SELECT * FROM users ORDER BY user_id DESC LIMIT {$offset}, {$limit}";
