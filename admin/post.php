@@ -13,7 +13,7 @@
         <?php
 
         include "config.php";
-        $limit = 3;
+        $limit = 10;
 
         if (isset($_GET['page'])) {
           $page_number = $_GET['page'];
@@ -116,5 +116,3 @@
   </div>
 </div>
 <?php include "footer.php"; ?>
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cum facilis ratione ut aspernatur, impedit debitis blanditiis temporibus quod, deleniti eveniet a nesciunt adipisci, autem ab repellendus. Id, reprehenderit veniam?
