@@ -13,7 +13,7 @@
         <?php
 
         include "config.php";
-        $limit = 10;
+        $limit = 5;
 
         if (isset($_GET['page'])) {
           $page_number = $_GET['page'];
