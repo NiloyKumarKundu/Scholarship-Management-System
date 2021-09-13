@@ -56,7 +56,7 @@ if ($_SESSION['user_role'] == '0') {
                 <tr>
                   <td class='id'><?php echo $serial_number++ ?></td>
                   <td><?php echo $row['category_name'] ?></td>
-                  <td><?php echo $row['post'] ?></td>
+                  <td><?php echo $row['post'] ?></td> 
 
 
                   <td class='edit'><a href='update-category.php?id=<?php echo $row['category_id'] ?>'><i class='fa fa-edit'></i></a></td>

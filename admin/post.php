@@ -13,7 +13,7 @@
         <?php
 
         include "config.php";
-        $limit = 5;
+        $limit = 7;
 
         if (isset($_GET['page'])) {
           $page_number = $_GET['page'];
@@ -43,7 +43,7 @@
         if ($count > 0) {
 
         ?>
-          <table class="content-table">
+          <table class="content-table table-striped">
             <thead>
               <th>S.No.</th>
               <th>Image</th>
