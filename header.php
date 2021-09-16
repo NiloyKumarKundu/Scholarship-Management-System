@@ -36,12 +36,41 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+
+                    <?php
+                        include "./admin/config.php";
+
+                        if(isset($_GET['cid'])) {
+                            $cat_id = $_GET['cid'];
+                        }
+
+                        $query = "SELECT * FROM category WHERE post > 0";
+                        $result = mysqli_query($connection, $query) or die("Category query failed!");
+
+                        if (mysqli_num_rows($result)) {
+                            $active = "";
+
+                    ?>
+
+
                     <ul class='menu'>
-                        <li><a href='category.php'>World</a></li>
-                        <li><a href='category.php'>Local News</a></li>
-                        <li><a href='category.php'>Technology</a></li>
-                        <li><a href='category.php'>Science</a></li>
+                        <?php
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                if(isset($_GET['cid'])) {
+                                    if ($row['category_id']  == $cat_id) {
+                                        $active = "active";
+                                    } else {
+                                        $active = "";
+                                    }
+                                }
+                                echo "<li> <a class='{$active}' href='category.php?cid={$row['category_id']}'>{$row['category_name']}</a></li>";
+                            }
+                        ?>
                     </ul>
+
+                    <?php } ?>
+
+
                 </div>
             </div>
         </div>

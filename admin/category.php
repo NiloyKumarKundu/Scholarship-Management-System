@@ -18,7 +18,7 @@ if ($_SESSION['user_role'] == '0') {
 
         <?php
 
-        include "config.php";
+        include "./config.php";
 
         $limit = 5;
 
