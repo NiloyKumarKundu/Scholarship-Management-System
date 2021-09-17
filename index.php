@@ -5,6 +5,7 @@
             <div class="col-md-8">
                 <!-- post-container -->
                 <div class="post-container">
+                <h2 class="page-heading">Available Scholarships</h2>
                     <?php
 
                     include "./admin/config.php";
@@ -43,7 +44,6 @@
                         while ($row = mysqli_fetch_assoc($result)) {
 
                     ?>
-
                             <div class="post-content">
                                 <div class="row">
                                     <div class="col-md-4">

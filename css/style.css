@@ -523,14 +523,14 @@ i.fa{
 
 /* Footer Styling */
 #footer{
-    color: #000;
+    color: rgb(209, 204, 204)  !important;
     padding:15px 0;
     text-align:center;
-    background-color:#e4e6d6;
+    background-color: rgb(39,39,39) !important;
 }
 
 #footer  a{
-    color:#e20d0d;
+    color: #08f34f;
 }
 
 #footer  span  a:hover{

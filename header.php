@@ -6,73 +6,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>News Site</title>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <title>Scholarship</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
+    </script>
+
+    <script src="./css/bootstrap.min.css"></script>
+
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="./css/font-awesome.css">
+
     <!-- Custom stlylesheet -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    <!-- HEADER -->
-    <div id="header">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <!-- LOGO -->
-                <div class=" col-md-offset-4 col-md-4">
-                    <a href="index.php" id="logo"><img src="images/news.jpg"></a>
-                </div>
-                <!-- /LOGO -->
-            </div>
-        </div>
-    </div>
-    <!-- /HEADER -->
     <!-- Menu Bar -->
-    <div id="menu-bar">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.php">Scholarship Management System</a>
+                </div>
 
-                    <?php
-                        include "./admin/config.php";
+                <?php
+                include "./admin/config.php";
 
-                        if(isset($_GET['cid'])) {
-                            $cat_id = $_GET['cid'];
-                        }
+                if (isset($_GET['cid'])) {
+                    $cat_id = $_GET['cid'];
+                }
 
-                        $query = "SELECT * FROM category WHERE post > 0";
-                        $result = mysqli_query($connection, $query) or die("Category query failed!");
+                $query = "SELECT * FROM category WHERE post > 0";
+                $result = mysqli_query($connection, $query) or die("Category query failed!");
 
-                        if (mysqli_num_rows($result)) {
-                            $active = "";
+                if (mysqli_num_rows($result)) {
+                    $active = "";
 
-                    ?>
+                ?>
 
-
-                    <ul class='menu'>
-                        <?php
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <?php
                             while ($row = mysqli_fetch_assoc($result)) {
-                                if(isset($_GET['cid'])) {
+                                if (isset($_GET['cid'])) {
                                     if ($row['category_id']  == $cat_id) {
                                         $active = "active";
                                     } else {
                                         $active = "";
                                     }
                                 }
-                                echo "<li> <a class='{$active}' href='category.php?cid={$row['category_id']}'>{$row['category_name']}</a></li>";
+
+                                echo "<li class='{$active}'><a href='category.php?cid={$row['category_id']}'>{$row['category_name']}</span></a></li>";
                             }
-                        ?>
-                    </ul>
+                            ?>
+                        </ul>
 
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-user"></span><?php echo " Hello, User!" ?>
+                                </a>
+                            </li>
+                            <!-- <li><a href="./logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> -->
+                        </ul>
                     <?php } ?>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
+                    </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </header>
     <!-- /Menu Bar -->

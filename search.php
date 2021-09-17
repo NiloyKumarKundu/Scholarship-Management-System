@@ -17,7 +17,7 @@
 
 
                     <?php
-                        $limit = 3;
+                        $limit = 4;
                         if (isset($_GET['page'])) {
                             $page_number = $_GET['page'];
                         } else {

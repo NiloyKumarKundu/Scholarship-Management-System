@@ -386,20 +386,21 @@ i.fa {
 }
 
 /* Footer Styling */
-#footer {
-  color: rgba(224, 216, 216, 0.952);
-  padding: 15px 0;
-  text-align: center;
-  background-color: #222;
+#footer{
+    color: rgb(209, 204, 204)  !important;
+    padding:15px 0;
+    text-align:center;
+    background-color: rgb(39,39,39) !important;
 }
 
-#footer a {
-  color: #08f34f;
+#footer  a{
+    color: #08f34f;
 }
 
-#footer span a:hover {
-  text-decoration: underline;
+#footer  span  a:hover{
+    text-decoration: underline;
 }
+
 
 /* ===================== */
 /* FrontEnd CSS END */
