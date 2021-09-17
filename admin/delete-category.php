@@ -1,23 +1,23 @@
 <?php 
 
-include 'config.php';
+	include 'config.php';
 
-if($_SESSION['user_role'] == '0'){
-  header("location: post.php");
-}
+	if($_SESSION['user_role'] == '0'){
+	header("location: post.php");
+	}
 
-$rcv_id = $_GET['id'];
+	$rcv_id = $_GET['id'];
 
-$query = "DELETE FROM category WHERE category_id = '{$rcv_id}'";
+	$query = "DELETE FROM category WHERE category_id = '{$rcv_id}'";
 
-$result = mysqli_query($connection,$query);
+	$result = mysqli_query($connection,$query);
 
-if($result){
-	header("location: category.php");
-}else{
-	echo "Can't Delete Category.";
-}
+	if($result){
+		header("location: category.php");
+	}else{
+		echo "Can't Delete Category.";
+	}
 
-mysqli_close($connection);
+	mysqli_close($connection);
 
 ?>

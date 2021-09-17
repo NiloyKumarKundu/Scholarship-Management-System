@@ -29,22 +29,21 @@
                     }
                     $offset = ($page_number - 1) * $limit;
 
-                    $query =    "SELECT post.post_id,
+                    $query =    "SELECT     post.post_id,
                                             post.title,
                                             post.description,
                                             post.post_img, 
                                             post.post_date,
                                             post.category, 
                                             category.category_name,
-                                            users.username 
+                                            users.username,
+                                            post.author
                                     FROM    post
                                     LEFT JOIN category
-                                    ON 
-                                    post.category = category.category_id
+                                    ON      post.category = category.category_id
                                     LEFT JOIN users
-                                    ON 
-                                    post.author = users.user_id
-                                    WHERE post.category = {$rcv_cid}
+                                    ON      post.author = users.user_id
+                                    WHERE   post.category = {$rcv_cid}
                                     ORDER BY post.post_id DESC LIMIT {$offset},{$limit}";
 
                     $result = mysqli_query($connection, $query) or die("Failed");
@@ -70,7 +69,7 @@
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                                    <a href='author.php'><?php echo $row['username'] ?></a>
+                                                    <a href='author.php?author_id=<?php echo $row['author'] ?>'><?php echo $row['username'] ?></a>
                                                 </span>
                                                 <span>
                                                     <i class="fa fa-calendar" aria-hidden="true"></i>

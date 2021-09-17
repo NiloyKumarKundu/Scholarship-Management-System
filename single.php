@@ -18,7 +18,8 @@
                                             post.post_date,
                                             post.category,
                                             category.category_name,
-                                            users.username
+                                            users.username,
+                                            post.author
                                     FROM post
                                     LEFT JOIN category 
                                     ON 
@@ -47,7 +48,7 @@
                                 </span>
                                 <span>
                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                    <a href='author.php'><?php echo $row['username'] ?></a>
+                                    <a href='author.php?author_id=<?php echo $row['author'] ?>'><?php echo $row['username'] ?></a>
                                 </span>
                                 <span>
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
