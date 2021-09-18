@@ -197,6 +197,22 @@ form{
     width: 100%;
 }
 
+/* Nav bar */
+
+
+.brandImg {
+    height: 25px;
+    width: 35px;
+}
+
+.right-control {
+    margin-right: 50px;
+}
+
+.left-control {
+    margin-left: 40px;
+}
+
 /* Menubar Styling */
 #menu-bar{
     background: #333;

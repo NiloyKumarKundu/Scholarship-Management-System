@@ -8,17 +8,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Scholarship</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
-    </script>
-
-    <script src="./css/bootstrap.min.css"></script>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
 
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="./css/font-awesome.css">
@@ -30,63 +22,60 @@
 <body>
     <!-- Menu Bar -->
     <header>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.php">Scholarship Management System</a>
-                </div>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <!-- Brand -->
 
+            <div class="navbar-header">
+                    <a class="navbar-brand" href="./index.php">Scholarship Management System</a>
+            </div>
+            <!-- Links -->
+
+            <?php
+            include "./admin/config.php";
+
+            if (isset($_GET['cid'])) {
+                $cat_id = $_GET['cid'];
+            }
+
+            $query = "SELECT * FROM category WHERE post > 0";
+            $result = mysqli_query($connection, $query) or die("Category query failed!");
+
+            if (mysqli_num_rows($result)) {
+                $active = "";
+
+            ?>
+
+            <ul class="navbar-nav">
                 <?php
-                include "./admin/config.php";
-
-                if (isset($_GET['cid'])) {
-                    $cat_id = $_GET['cid'];
-                }
-
-                $query = "SELECT * FROM category WHERE post > 0";
-                $result = mysqli_query($connection, $query) or die("Category query failed!");
-
-                if (mysqli_num_rows($result)) {
-                    $active = "";
-
-                ?>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <?php
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                if (isset($_GET['cid'])) {
-                                    if ($row['category_id']  == $cat_id) {
-                                        $active = "active";
-                                    } else {
-                                        $active = "";
-                                    }
-                                }
-
-                                echo "<li class='{$active}'><a href='category.php?cid={$row['category_id']}'>{$row['category_name']}</span></a></li>";
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        if (isset($_GET['cid'])) {
+                            if ($row['category_id']  == $cat_id) {
+                                $active = "active";
+                            } else {
+                                $active = "";
                             }
-                            ?>
-                        </ul>
+                        }
 
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="#">
-                                    <span class="glyphicon glyphicon-user"></span><?php echo " Hello, User!" ?>
-                                </a>
-                            </li>
-                            <!-- <li><a href="./logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> -->
-                        </ul>
-                    <?php } ?>
-                    </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                        echo "<li class='nav-item {$active}'>
+                            <a class='nav-link' href='category.php?cid={$row['category_id']}'>{$row['category_name']}</a>
+                            </li>";
+                    }
+                }
+                ?>
+            </ul>
+
+                <!-- Dropdown -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            <img src="./images/pro.png" class="rounded-circle brandImg" alt=""/>
+                        </a>
+                        <div class="dropdown-menu bg-secondary bg-gradient dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    </li>
+                </ul>
         </nav>
     </header>
-    <!-- /Menu Bar -->
