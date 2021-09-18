@@ -440,7 +440,6 @@ i.fa{
     font-weight: 600;
     text-transform: uppercase;
     padding: 6px 8px;
-    background-color: #333333;
     border-color: #333333;
     outline: none;
 }
@@ -537,21 +536,6 @@ i.fa{
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
-/* Footer Styling */
-#footer{
-    color: rgb(209, 204, 204)  !important;
-    padding:15px 0;
-    text-align:center;
-    background-color: rgb(39,39,39) !important;
-}
-
-#footer  a{
-    color: #08f34f;
-}
-
-#footer  span  a:hover{
-    text-decoration: underline;
-}
 
 /* ===================== */
 /* FrontEnd CSS END */
