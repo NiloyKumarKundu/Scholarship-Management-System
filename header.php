@@ -25,7 +25,7 @@
             <!-- Brand -->
 
             <div class="navbar-header">
-                    <a class="navbar-brand" href="./index.php">Scholarship Management System</a>
+                    <a class="navbar-brand" href="./index.php">MyScholar</a>
             </div>
             <!-- Links -->
 
@@ -70,7 +70,7 @@
                             <img src="./images/pro.png" class="rounded-circle brandImg" alt=""/>
                         </a>
                         <div class="dropdown-menu bg-secondary bg-gradient dropdown-menu-right">
-                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="profile.php">Profile</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Logout</a>
                         </div>

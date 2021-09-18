@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="post.php">Scholarship Management System</a>
+                <a class="navbar-brand" href="post.php">MyScholar</a>
             </div>
 
             <?php

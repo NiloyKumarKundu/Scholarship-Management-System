@@ -97,9 +97,13 @@
                         $total_records = mysqli_num_rows($result2);
                         $total_page = ceil($total_records / $limit);
 
-                        echo "<ul class='pagination admin-pagination'>";
+                        echo "<nav aria-label='Page navigation example'>";
+                        echo "<ul class='pagination justify-content-center'>";
                         if ($page_number > 1) {
-                            echo '<li><a href="category.php?cid=' . $rcv_cid . '&page=' . ($page_number - 1) . '">prev</a></li>';
+                            echo '<li class="page-item">';
+                                echo '<a class="page-link" href="category.php?cid=' . $rcv_cid . '&page=' . ($page_number - 1) . '">Previous</a>';
+                            echo "</li>";
+
                         }
 
                         for ($i = 1; $i <= $total_page; $i++) {
@@ -110,18 +114,16 @@
                                 $active = "";
                             }
 
-                            echo '<li class=' . $active . '><a href="category.php?cid=' . $rcv_cid . '&page=' . $i . '">' . $i . '</a></li>';
+                            echo '<li class="page-item ' . $active .'">';
+                            echo '<a class="page-link" href="category.php?cid=' . $rcv_cid . '&page=' . $i . '">' . $i .'</a></li>';
                         }
                         if ($total_page > $page_number) {
-                            echo '<li><a href="category.php?cid=' . $rcv_cid . '&page=' . ($page_number + 1) . '">next</a></li>';
+                            echo '<li class="page-item"><a class="page-link" href="category.php?cid=' . $rcv_cid . '&page=' . ($page_number + 1) . '">Next</a></li>';
                         }
                         echo "</ul>";
                     }
                     ?>
-
-
-
-
+                    
                 </div><!-- /post-container -->
             </div>
             <?php include 'sidebar.php'; ?>
