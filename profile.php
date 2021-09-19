@@ -6,9 +6,18 @@
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <!-- <div class="breadcrumb-item"> -->
+                    <li class="text-secondary" style="margin-top: 0.4em; margin-right: 1em;">
+                        <h6>Want to be a moderator?</h6>
+                    </li>
+                <!-- </div> -->
+                <li class="breadcrumb-item">
+                        <button class="btn btn-sm btn-success"><a href="#" style="color: #fff;">Apply Now!</a></button>
+                </li>
+
+                <!-- <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-                <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                <li class="breadcrumb-item active" aria-current="page">User Profile</li> -->
             </ol>
         </nav>
 
@@ -24,7 +33,7 @@
                                 <h4>John Doe</h4>
                                 <p class="text-secondary mb-1">Full Stack Developer</p>
                                 <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                                <button class="btn btn-primary">Update Profile Picture</button>
+                                <button class="btn btn-primary"><a href="./update-profile-pic.php" style="color: #fff;">Update Profile Picture</a></button>
                                 <button class="btn btn-outline-primary">Edit Profile</button>
                             </div>
                         </div>
@@ -101,19 +110,19 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Mobile</h6>
+                                <h6 class="mb-0">Address</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                (320) 380-4539
+                                Bay Area, San Francisco, CA
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Address</h6>
+                                <h6 class="mb-0">Date of Birth</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                Bay Area, San Francisco, CA
+                                23 July, 1999
                             </div>
                         </div>
                     </div>
@@ -121,18 +130,11 @@
 
 
                 <div class="row gutters-sm">
-                    <div class="col-sm-8 mb-3">
+                    <div class="col-sm-7 mb-3">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Other Informations</i></h6>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <small class="mb-0">Date of Birth</small>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <small class="mb-0">23 July, 1999</small>
-                                    </div>
-                                </div>
+
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <small class="mb-0">Gender</small>
@@ -147,6 +149,14 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <small class="mb-0">Bangladesh</small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <small class="mb-0">Nationality</small>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <small class="mb-0">Bangladeshi</small>
                                     </div>
                                 </div>
                                 <br>
@@ -178,7 +188,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4 mb-3">
+                    <div class="col-sm-5 mb-3">
                         <div class="card h-50">
                             <div class="card-body">
                                 <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Interested Category</i></h6>

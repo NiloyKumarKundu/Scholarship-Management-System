@@ -16,6 +16,8 @@
 
     <!-- Custom stlylesheet -->
     <link rel="stylesheet" href="./css/style.css">
+    <script src="./jquery.js"></script>
+    <script src="./script.js"></script>
 </head>
 
 <body>
