@@ -35,10 +35,10 @@ if (isset($_POST['submit'])) {
 <div id="admin-content">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style= "margin-top: 1em;">
                 <h1 class="admin-heading">Modify User Details</h1>
             </div>
-            <div class="col-md-offset-4 col-md-4">
+            <div class="col-md-offset-4 col-md-4" style="margin-left: 22em; margin-top: 2em;">
                 <!-- Form Start -->
 
                 <?php

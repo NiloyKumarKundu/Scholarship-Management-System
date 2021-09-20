@@ -1,11 +1,9 @@
 <?php
-    session_start();
-    session_regenerate_id();
-    if (!isset($_SESSION['username'])) {
-        header("location: index.php");
-    }
-
-
+session_start();
+session_regenerate_id();
+if (!isset($_SESSION['username'])) {
+    header("location: index.php");
+}
 ?>
 
 
@@ -14,42 +12,37 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Admin Panel</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link rel="stylesheet" href="./css/font-awesome.css">
 
     <!-- Custom stlylesheet -->
     <link rel="stylesheet" href="./css/style.css">
+    <script src="../jquery.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
 </head>
 
 <body>
     <!-- HEADER -->
     <header>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <!-- Brand -->
+
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 <a class="navbar-brand" href="post.php">MyScholar</a>
             </div>
+            <!-- Links -->
 
             <?php
             $value = basename($_SERVER['PHP_SELF']);
@@ -65,27 +58,35 @@
             }
             ?>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="<?php echo $post ?>"><a href="./post.php">Post <span class="sr-only">(current)</span></a></li>
-                    <?php if ($_SESSION['user_role'] == '1') { ?>
-                        <li class="<?php echo $category ?>"><a href="./category.php">Category</a></li>
-                        <li class="<?php echo $user ?>"><a href="./users.php">User</a></li>
-                    <?php } ?>
-                </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-user"></span><?php echo " Hello, " . $_SESSION['username'] ?>
-                        </a>
+            <ul class="navbar-nav">
+                <li class="nav-item <?php echo $post ?>">
+                    <a class='nav-link' href='./post.php'>Post</a>
+                </li>
+
+                <?php if ($_SESSION['user_role'] == '1') { ?>
+                    <li class="nav-item <?php echo $category ?>">
+                        <a class='nav-link' href="./category.php">Category</a>
                     </li>
-                    <li><a href="./logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+                    <li class="nav-item <?php echo $user ?>">
+                        <a class='nav-link' href="./users.php">User</a>
+                    </li>
+                <?php } ?>
+            </ul>
+
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class='nav-link' href="#">
+                        <i class="fas fa-user"></i>
+                        </span><?php echo " Hello, " . $_SESSION['username'] ?>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class='nav-link' href="./logout.php">
+                    <i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
+            </ul>
+        </nav>
     </header>
 
     <!-- /Menu Bar -->

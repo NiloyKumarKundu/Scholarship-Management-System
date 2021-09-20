@@ -77,7 +77,7 @@
                                                 </span>
                                             </div>
                                             <p class="description">
-                                                <?php echo substr($row['description'], 0, 150) . "..." ?>
+                                                <?php echo substr(strip_tags($row['description']), 0, 150) . "..." ?>
                                             </p>
                                             <a class='read-more pull-right' href='single.php?id=<?php echo $row['post_id'] ?>'>read more</a>
                                         </div>

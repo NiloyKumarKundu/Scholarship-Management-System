@@ -1,9 +1,9 @@
-<?php 
-  include "header.php";
+<?php
+include "header.php";
 
-  if ($_SESSION['user_role'] == '0') {
-    header("location: post.php");
-  }
+if ($_SESSION['user_role'] == '0') {
+  header("location: post.php");
+}
 ?>
 <div id="admin-content">
   <div class="container">
@@ -56,13 +56,21 @@
                 <tr>
                   <td class='id'><?php echo $serial_number++ ?></td>
                   <td><?php echo $row['category_name'] ?></td>
-                  <td><?php echo $row['post'] ?></td> 
+                  <td><?php echo $row['post'] ?></td>
 
 
-                  <td class='edit'><a href='update-category.php?id=<?php echo $row['category_id'] ?>'><i class='fa fa-edit'></i></a></td>
+                  <td class='edit'>
+                    <a style="color: #302f2f;" href='update-category.php?id=<?php echo $row['category_id'] ?>'>
+                      <i class="fas fa-edit"></i>
+                    </a>
+                  </td>
 
 
-                  <td class='delete'><a onclick="return confirm('Are You Sure?')" href='delete-category.php?id=<?php echo $row['category_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
+                  <td class='delete'>
+                    <a style="color: #302f2f;" onclick="return confirm('Are You Sure?')" href='delete-category.php?id=<?php echo $row['category_id'] ?>'>
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </td>
 
 
                 </tr>
@@ -78,14 +86,17 @@
           include "config.php";
           $query2 = "SELECT * FROM category";
           $result2 = mysqli_query($connection, $query2) or dir("Failed.");
-          
+
           if (mysqli_num_rows($result2)) {
             $total_records = mysqli_num_rows($result2);
             $total_page = ceil($total_records / $limit);
 
-            echo "<ul class='pagination admin-pagination'>";
+            echo "<nav aria-label='Page navigation example'>";
+            echo "<ul class='pagination justify-content-center'>";
             if ($page_number > 1) {
-              echo '<li><a href="category.php?page=' . ($page_number - 1) . '">prev</a></li>';
+              echo '<li class="page-item">';
+                echo '<a class="page-link" href="category.php?page=' . ($page_number - 1) . '">Previous</a>';
+              echo "</li>";
             }
 
             for ($i = 1; $i <= $total_page; $i++) {
@@ -95,11 +106,11 @@
               } else {
                 $active = "";
               }
-
-              echo '<li class=' . $active . '><a href="category.php?page=' . $i . '">' . $i . '</a></li>';
+              echo '<li class="page-item ' . $active . '">';
+              echo '<a class="page-link" href="category.php?page=' . $i . '">' . $i . '</a></li>';
             }
             if ($total_page > $page_number) {
-              echo '<li><a href="category.php?page=' . ($page_number + 1) . '">next</a></li>';
+              echo '<li class="page-item"><a class="page-link" href="category.php?page=' . ($page_number + 1) . '">Next</a></li>';
             }
             echo "</ul>";
           }

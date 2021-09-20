@@ -8,10 +8,10 @@ if ($_SESSION['user_role'] == '0') {
 <div id="admin-content">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12" style="margin-top: 0.5em;">
         <h1 class="admin-heading">Update Post</h1>
       </div>
-      <div class="col-md-offset-3 col-md-6">
+      <div class="col-md-offset-3 col-md-6" style="margin-left: 15em; margin-bottom: 1em;">
         <!-- Form for show edit-->
 
         <?php
@@ -42,9 +42,13 @@ if ($_SESSION['user_role'] == '0') {
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1"> Description</label>
-                <textarea name="postdesc" class="form-control" required rows="5">
+
+                <textarea name="postdesc" id="editor">
                     <?php echo $row['description']; ?>
                 </textarea>
+                <script>
+                  ClassicEditor.create(document.getElementById('editor'));
+                </script>
               </div>
               <div class="form-group">
                 <label for="exampleInputCategory">Category</label>

@@ -1,8 +1,8 @@
-<?php 
-  include "header.php"; 
-  if($_SESSION['user_role'] == '0'){
-    header("location: post.php");
-  }  
+<?php
+include "header.php";
+if ($_SESSION['user_role'] == '0') {
+  header("location: post.php");
+}
 ?>
 
 
@@ -60,18 +60,26 @@
                   <td><?php echo $row['username'] ?></td>
                   <td>
                     <?php
-                      if ($row['role']) {
-                        echo "Admin";
-                      } else {
-                        echo "Modarator";
-                      }
+                    if ($row['role']) {
+                      echo "Admin";
+                    } else {
+                      echo "Modarator";
+                    }
                     ?>
                   </td>
 
-                  <td class='edit'><a href='update-user.php?id=<?php echo $row['user_id'] ?>'><i class='fa fa-edit'></i></a></td>
+                  <td class='edit'>
+                    <a style="color: #302f2f;" href='update-user.php?id=<?php echo $row['user_id'] ?>'>
+                      <i class="fas fa-edit"></i>
+                    </a>
+                  </td>
 
 
-                  <td class='delete'><a onclick="return confirm('Are You Sure?')" href='delete-user.php?id=<?php echo $row['user_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
+                  <td class='delete'>
+                    <a style="color: #302f2f;" onclick="return confirm('Are You Sure?')" href='delete-user.php?id=<?php echo $row['user_id'] ?>'>
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </td>
                 </tr>
               <?php } ?>
 
@@ -81,34 +89,40 @@
           </table>
 
           <?php
-              include './config.php';
-              $query2 = "SELECT * FROM users";
-              $result2 = mysqli_query($connection, $query2) or die("failed");
+          include './config.php';
+          $query2 = "SELECT * FROM users";
+          $result2 = mysqli_query($connection, $query2) or die("failed");
 
-              if (mysqli_num_rows($result2)) {
-                $total_records = mysqli_num_rows($result2);
-                $total_page = ceil($total_records / $limit);
+          if (mysqli_num_rows($result2)) {
+            $total_records = mysqli_num_rows($result2);
+            $total_page = ceil($total_records / $limit);
 
-                echo "<ul class='pagination admin-pagination'>";
+            echo "<nav aria-label='Page navigation example'>";
+            echo "<ul class='pagination justify-content-center'>";
 
-                if ($page_number > 1) {
-                  echo '<li><a href="users.php?page='.($page_number - 1).'">Prev</a></li>';
-                }
-                for ($i = 1; $i <= $total_page; $i++) {
-                  if ($i == $page_number) {
-                    $active = "active";
-                  } else {
-                    $active = "";
-                  }
-                  echo '<li class='.$active.'><a href="users.php?page='.$i.'">'.$i.'</a></li>';
-                }
-                if ($page_number < $total_page) {
-                  echo '<li><a href="users.php?page='.($page_number + 1).'">Next</a></li>';
-                }
-                echo "</ul>";
+            if ($page_number > 1) {
+              echo '<li class="page-item">';
+              echo '<a class="page-link" href="users.php?page=' . ($page_number - 1) . '">Previous</a>';
+              echo "</li>";
+            }
+            for ($i = 1; $i <= $total_page; $i++) {
+              if ($i == $page_number) {
+                $active = "active";
+              } else {
+                $active = "";
               }
+              echo '<li class="page-item ' . $active . '">';
+              echo '<a class="page-link" href="users.php?page=' . $i . '">' . $i . '</a></li>';
+            }
+            if ($page_number < $total_page) {
+              echo '<li class="page-item"><a class="page-link" href="users.php?page=' . ($page_number + 1) . '">Next</a></li>';
+
+              echo '<li><a href="">Next</a></li>';
+            }
+            echo "</ul>";
+          }
           ?>
-            <!-- <li class="active"><a>1</a></li> -->
+          <!-- <li class="active"><a>1</a></li> -->
       </div>
     </div>
   </div>

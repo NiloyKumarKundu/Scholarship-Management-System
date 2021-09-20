@@ -68,8 +68,16 @@
                   <td><?php echo $row['post_date'] ?></td>
                   <td><?php echo $row['username'] ?></td>
 
-                  <td class='edit'><a href='update-post.php?id=<?php echo $row['post_id'] ?>'><i class='fa fa-edit'></i></a></td>
-                  <td class='delete'><a onclick="return confirm('Are You Sure?')" href='delete-post.php?id=<?php echo $row['post_id'] ?>&catid=<?php echo $row['category'] ?>'><i class='fa fa-trash-o'></i></a></td>
+                  <td class='edit'>
+                    <a style="color: #302f2f;" href='update-post.php?id=<?php echo $row['post_id'] ?>'>
+                    <i class="fas fa-edit"></i>
+                    </a>
+                  </td>
+                  <td class='delete'>
+                    <a style="color: #302f2f;" onclick="return confirm('Are You Sure?')" href='delete-post.php?id=<?php echo $row['post_id'] ?>&catid=<?php echo $row['category'] ?>'>
+                    <i class="fas fa-trash"></i>
+                    </a>
+                  </td>
 
 
                 </tr>
@@ -87,9 +95,13 @@
             $total_records = mysqli_num_rows($result2);
             $total_page = ceil($total_records / $limit);
 
-            echo "<ul class='pagination admin-pagination'>";
+            echo "<nav aria-label='Page navigation example'>";
+            echo "<ul class='pagination justify-content-center'>";
             if ($page_number > 1) {
-              echo '<li><a href="post.php?page=' . ($page_number - 1) . '">prev</a></li>';
+              echo '<li class="page-item">';
+              echo '<a class="page-link" href="post.php?page=' . ($page_number - 1) . '">Previous</a>';
+              echo "</li>";
+              // echo '<li><a href="post.php?page=' . ($page_number - 1) . '">prev</a></li>';
             }
 
             for ($i = 1; $i <= $total_page; $i++) {
@@ -100,10 +112,15 @@
                 $active = "";
               }
 
-              echo '<li class=' . $active . '><a href="post.php?page=' . $i . '">' . $i . '</a></li>';
+              echo '<li class="page-item ' . $active . '">';
+              echo '<a class="page-link" href="post.php?page=' . $i . '">' . $i . '</a></li>';
+
+              // echo '<li class=' . $active . '><a href="post.php?page=' . $i . '">' . $i . '</a></li>';
             }
             if ($total_page > $page_number) {
-              echo '<li><a href="post.php?page=' . ($page_number + 1) . '">next</a></li>';
+              echo '<li class="page-item"><a class="page-link" href="post.php?page=' . ($page_number + 1) . '">Next</a></li>';
+
+              // echo '<li><a href="post.php?page=' . ($page_number + 1) . '">next</a></li>';
             }
             echo "</ul>";
           }

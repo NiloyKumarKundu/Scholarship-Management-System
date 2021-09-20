@@ -1,41 +1,41 @@
 <?php include 'header.php'; ?>
-    <div id="main-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <!-- post-container -->
+<div id="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- post-container -->
 
-                    <?php
+                <?php
 
-                        include "./admin/config.php";
+                include "./admin/config.php";
 
-                        $post_id = $_GET['id'];
-                    
-                        $query =    "SELECT post.post_id,
-                                            post.title,
-                                            post.description,
-                                            post.post_img,
-                                            post.post_date,
-                                            post.category,
-                                            category.category_name,
-                                            users.username,
-                                            post.author
-                                    FROM post
-                                    LEFT JOIN category 
-                                    ON 
-                                    post.category = category.category_id
-                                    LEFT JOIN users
-                                    ON 
-                                    post.author = users.user_id
-                                    WHERE post.post_id = {$post_id};";
+                $post_id = $_GET['id'];
 
-                        $result = mysqli_query($connection, $query) or die("Failed");
-                        $count = mysqli_num_rows($result);
+                $query =    "SELECT post.post_id,
+                                    post.title,
+                                    post.description,
+                                    post.post_img,
+                                    post.post_date,
+                                    post.category,
+                                    category.category_name,
+                                    users.username,
+                                    post.author
+                            FROM post
+                            LEFT JOIN category 
+                            ON 
+                            post.category = category.category_id
+                            LEFT JOIN users
+                            ON 
+                            post.author = users.user_id
+                            WHERE post.post_id = {$post_id};";
 
-                        if ($count > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
+                $result = mysqli_query($connection, $query) or die("Failed");
+                $count = mysqli_num_rows($result);
 
-                    ?>
+                if ($count > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+
+                ?>
 
 
                     <div class="post-container">
@@ -55,24 +55,29 @@
                                     <?php echo $row['post_date'] ?>
                                 </span>
                             </div>
-                            <img class="single-feature-image" src="./admin/upload/<?php echo $row['post_img'] ?>" alt=""/>
-                            <p class="description">
-                                <?php echo $row['description'] ?>
-                            </p>
+                            <img class="single-feature-image" src="./admin/upload/<?php echo $row['post_img'] ?>" alt="" />
+                            <div class="container text-justify">
+                                <p class="text-justify">
+                                    <?php echo $row['description'] ?>
+                                </p>
+                            </div>
+                            <div class="d-grid gap-2 col-3 mx-auto">
+                                <button class="btn btn-primary" type="button">Apply Now!</button>
+                            </div>
                         </div>
                     </div>
 
 
-                    <?php
-                            }
-                        } else {
-                            echo "No record Found!";
-                        }
-                    ?>
-                    <!-- /post-container -->
-                </div>
-                <?php include 'sidebar.php'; ?>
+                <?php
+                    }
+                } else {
+                    echo "No record Found!";
+                }
+                ?>
+                <!-- /post-container -->
             </div>
+            <?php include 'sidebar.php'; ?>
         </div>
     </div>
+</div>
 <?php include 'footer.php'; ?>
