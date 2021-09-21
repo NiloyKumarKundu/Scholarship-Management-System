@@ -14,7 +14,8 @@ if (!isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Scholarship</title>
+    
+    <title>Home</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -38,7 +39,7 @@ if (!isset($_SESSION['username'])) {
             <!-- Brand -->
 
             <div class="navbar-header">
-                    <a class="navbar-brand" href="./index.php">MyScholar</a>
+                <a class="navbar-brand" href="./index.php">MyScholar</a>
             </div>
             <!-- Links -->
 
@@ -66,30 +67,32 @@ if (!isset($_SESSION['username'])) {
                     <a class='nav-link' href='home.php?'>Home</a>
                 </li>
                 <?php
-                    if ($user_role != 2) {
-                        echo "<li class='nav-item {$activeFavourites}'>
-                                <a class='nav-link' href='favourites.php?'>Favourites</a>
-                            </li>";
-                    }
+                if ($user_role != 2) {
                 ?>
-                
+                    <li class='nav-item <?php echo $activeFavourites ?>'>
+                        <a class='nav-link' href='favourites.php?'>Favourites</a>
+                    </li>";
+                <?php
+                }
+                ?>
+
                 <li class='nav-item <?php echo $activeAboutUs ?>'>
                     <a class='nav-link' href='about-us.php?'>About Us</a>
                 </li>
             </ul>
 
-                <!-- Dropdown -->
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            <img src="./images/pro.png" class="rounded-circle brandImg" alt=""/>
-                        </a>
-                        <div class="dropdown-menu bg-secondary bg-gradient dropdown-menu-right">
-                            <a class="dropdown-item" href="profile.php">Profile</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="./logout.php">Logout</a>
-                        </div>
-                    </li>
-                </ul>
+            <!-- Dropdown -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        <img src="./images/pro.png" class="rounded-circle brandImg" alt="" />
+                    </a>
+                    <div class="dropdown-menu bg-secondary bg-gradient dropdown-menu-right">
+                        <a class="dropdown-item" href="profile.php">Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="./logout.php">Logout</a>
+                    </div>
+                </li>
+            </ul>
         </nav>
     </header>

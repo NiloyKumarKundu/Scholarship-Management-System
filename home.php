@@ -91,7 +91,7 @@
                         echo "<ul class='pagination justify-content-center'>";
                         if ($page_number > 1) {
                             echo '<li class="page-item">';
-                            echo '<a class="page-link" href="index.php?page=' . ($page_number - 1) . '">Previous</a>';
+                            echo '<a class="page-link" href="home.php?page=' . ($page_number - 1) . '">Previous</a>';
                             echo "</li>";
                         }
 
@@ -104,10 +104,10 @@
                             }
 
                             echo '<li class="page-item ' . $active . '">';
-                            echo '<a class="page-link" href="index.php?page=' . $i . '">' . $i . '</a></li>';
+                            echo '<a class="page-link" href="home.php?page=' . $i . '">' . $i . '</a></li>';
                         }
                         if ($total_page > $page_number) {
-                            echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page_number + 1) . '">Next</a></li>';
+                            echo '<li class="page-item"><a class="page-link" href="home.php?page=' . ($page_number + 1) . '">Next</a></li>';
                         }
                         echo "</ul>";
                     }

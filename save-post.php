@@ -6,10 +6,10 @@
     
     // echo $_SESSION['user_id'];
     if ($value) {
-      $query = "UPDATE users SET fav = 1 WHERE user_id = '{$_SESSION['user_id']}'";
+      $query = "INSERT INTO favourite(post_id, user_id) VALUES({$id}, {$_SESSION['user_id']})";
 
     } else {
-      $query = "UPDATE users SET fav = 0 WHERE user_id = '{$_SESSION['user_id']}'";
+      $query = "DELETE FROM favourite WHERE user_id = {$_SESSION['user_id']} && post_id = {$id}";
     }
 
     $result = mysqli_query($connection, $query);

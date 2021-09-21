@@ -33,9 +33,10 @@
                 $result = mysqli_query($connection, $query) or die("Failed");
                 $count = mysqli_num_rows($result);
 
-                $query2 = "SELECT fav from users WHERE user_id = {$_SESSION['user_id']}";
+                $query2 = "SELECT COUNT(fav_id) AS cnt from favourite WHERE user_id = {$_SESSION['user_id']} && post_id = {$post_id}";
                 $result2 = mysqli_query($connection, $query2);
-                $favourite = mysqli_fetch_assoc($result2);
+                $favourite = mysqli_num_rows($result2);
+                $row2 = mysqli_fetch_assoc($result2);
 
                 if ($count > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -64,10 +65,12 @@
                                         </span>
 
                                         <?php
-                                            if ($favourite['fav']) {
-                                                echo '<a href="./save-post.php?id='.$post_id.'&value=0"><i class="fas fa-star"></i>Remove From Favourite</a>';
-                                            } else {
-                                                echo '<a href="./save-post.php?id='.$post_id.'&value=1"><i class="far fa-star"></i>Add to favourite</a>';
+                                            if ($user_role != 2) {
+                                                if ($row2['cnt']) {
+                                                    echo '<a href="./save-post.php?id='.$post_id.'&value=0"><i class="fas fa-star"></i>Remove From Favourite</a>';
+                                                } else {
+                                                    echo '<a href="./save-post.php?id='.$post_id.'&value=1"><i class="far fa-star"></i>Add to favourite</a>';
+                                                }
                                             }
                                         ?>
                                     </div>
