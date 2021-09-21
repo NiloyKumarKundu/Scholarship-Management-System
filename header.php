@@ -1,3 +1,11 @@
+<?php
+session_start();
+session_regenerate_id();
+if (!isset($_SESSION['username'])) {
+    header("location: index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +18,9 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
 
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="./css/font-awesome.css">
@@ -37,6 +48,7 @@
             if (isset($_GET['cid'])) {
                 $cat_id = $_GET['cid'];
             }
+            $user_id = $_SESSION['user_id'];
 
             $query = "SELECT * FROM category WHERE post > 0";
             $result = mysqli_query($connection, $query) or die("Category query failed!");
@@ -74,7 +86,7 @@
                         <div class="dropdown-menu bg-secondary bg-gradient dropdown-menu-right">
                             <a class="dropdown-item" href="profile.php">Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="./logout.php">Logout</a>
                         </div>
                     </li>
                 </ul>

@@ -273,13 +273,13 @@ form{
 }
 
 
-#main-content .post-content h3{
+/* #main-content .post-content h3{
     font-size: 21px;
     line-height: 28px;
     font-weight: 600;
     margin: 0 0 7px;
 
-}
+} */
 #main-content .post-content h3 a{
     color: #1e90ff;
     transition:all 0.3s;
@@ -340,8 +340,24 @@ form{
     padding-bottom: 0;
 }
 
-#main-content .single-post h3{
-    color: #1e90ff;
+
+
+
+
+#main-content .single-post h1 {
+    color: #6c757d !important;
+}
+#main-content .single-post h2 {
+    color: #6c757d !important;
+}
+#main-content .single-post h3 {
+    color: #6c757d !important;
+}
+#main-content .single-post h4 {
+    color: #6c757d !important;
+}
+#all-change {
+    color: #1e90ff !important;
 }
 
 #main-content .single-post .post-information{
@@ -535,6 +551,9 @@ i.fa{
 #sidebar .recent-post a.read-more:hover{
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
+
+
+
 
 
 /* ===================== */

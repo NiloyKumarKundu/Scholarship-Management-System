@@ -1,4 +1,14 @@
-<?php include "header.php"; ?>
+<?php 
+include "header.php";
+
+if ($_SESSION['user_role'] == '0') {
+  header("location: post.php");
+} else if ($_SESSION['user_role'] > 1) {
+  header("location: ../index.php");
+}
+
+?>
+
 <div id="admin-content">
   <div class="container">
     <div class="row">
@@ -101,7 +111,6 @@
               echo '<li class="page-item">';
               echo '<a class="page-link" href="post.php?page=' . ($page_number - 1) . '">Previous</a>';
               echo "</li>";
-              // echo '<li><a href="post.php?page=' . ($page_number - 1) . '">prev</a></li>';
             }
 
             for ($i = 1; $i <= $total_page; $i++) {
@@ -114,13 +123,9 @@
 
               echo '<li class="page-item ' . $active . '">';
               echo '<a class="page-link" href="post.php?page=' . $i . '">' . $i . '</a></li>';
-
-              // echo '<li class=' . $active . '><a href="post.php?page=' . $i . '">' . $i . '</a></li>';
             }
             if ($total_page > $page_number) {
               echo '<li class="page-item"><a class="page-link" href="post.php?page=' . ($page_number + 1) . '">Next</a></li>';
-
-              // echo '<li><a href="post.php?page=' . ($page_number + 1) . '">next</a></li>';
             }
             echo "</ul>";
           }

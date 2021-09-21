@@ -14,12 +14,25 @@
                 <li class="breadcrumb-item">
                         <button class="btn btn-sm btn-success"><a href="#" style="color: #fff;">Apply Now!</a></button>
                 </li>
-
-                <!-- <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-                <li class="breadcrumb-item active" aria-current="page">User Profile</li> -->
             </ol>
         </nav>
+
+        <?php
+            // if(isset())
+            $user_id = $_SESSION['user_id'];
+            // echo $user_id;
+            $query = "SELECT * FROM users WHERE user_id = {$user_id}";
+            $result = mysqli_query($connection, $query) or die("Query failed!");
+            
+
+            if (mysqli_num_rows($result)) {
+                while($row = mysqli_fetch_assoc($result)) {
+        
+        ?>
+
+
+
+
 
         <!-- /Breadcrumb -->
 
@@ -30,9 +43,9 @@
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="./ProPic/avatar7.png" alt="" class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>John Doe</h4>
+                                <h4><?php echo $row['username'] ?></h4>
                                 <p class="text-secondary mb-1">Full Stack Developer</p>
-                                <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                <p class="text-muted font-size-sm"><?php echo $row['address'] ?></p>
                                 <button class="btn btn-primary"><a href="./update-profile-pic.php" style="color: #fff;">Update Profile Picture</a></button>
                                 <button class="btn btn-outline-primary">Edit Profile</button>
                             </div>
@@ -86,7 +99,7 @@
                                 <h6 class="mb-0">Full Name</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                Kenneth Valdez
+                                <?php echo $row['first_name']. " ". $row['last_name'] ?>
                             </div>
                         </div>
                         <hr>
@@ -95,7 +108,7 @@
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                fip@jukmuh.al
+                                <?php echo $row['email'] ?>
                             </div>
                         </div>
                         <hr>
@@ -104,7 +117,7 @@
                                 <h6 class="mb-0">Phone</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                (239) 816-9029
+                            <?php echo $row['phone_no'] ?>
                             </div>
                         </div>
                         <hr>
@@ -113,7 +126,7 @@
                                 <h6 class="mb-0">Address</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                Bay Area, San Francisco, CA
+                            <?php echo $row['address'] ?>
                             </div>
                         </div>
                         <hr>
@@ -122,7 +135,11 @@
                                 <h6 class="mb-0">Date of Birth</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                23 July, 1999
+                                <?php
+                                     $mysqlDate = strtotime($row['dob']);
+                                     $phpDate = date( 'd F,Y', $mysqlDate );
+                                     echo $phpDate;
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -140,7 +157,7 @@
                                         <small class="mb-0">Gender</small>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <small class="mb-0">Male</small>
+                                        <small class="mb-0"><?php echo $row['gender'] ?></small>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -219,7 +236,9 @@
                 </div>
             </div>
         </div>
+        <?php }} ?>
     </div>
+    <div style="margin-bottom: 5em"></div>
 
 </div>
 </div>

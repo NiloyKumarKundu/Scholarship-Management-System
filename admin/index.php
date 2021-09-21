@@ -1,8 +1,8 @@
-<?php 
-    session_start();
-    if(isset($_SESSION['username'])){
-        header("location: post.php");
-    }
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+    header("location: post.php");
+}
 
 ?>
 
@@ -34,9 +34,9 @@
         <div class="card card-login">
             <ul class="card-body">
                 <li class="list-group-item disabled">
-                    <h3 >Admin Login</h3>
+                    <h3>Admin Login</h3>
                 </li>
-            </ul>   
+            </ul>
             <!-- Form Start -->
             <div class="card-body">
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
@@ -72,15 +72,15 @@
                 if (mysqli_num_rows($result) > 0) {
 
                     while ($row = mysqli_fetch_assoc($result)) {
-
-                        session_start();
-
-                        $_SESSION['username'] = $row['username'];
-                        $_SESSION['user_id'] = $row['user_id'];
-                        $_SESSION['user_role'] = $row['role'];
-                        echo $row['username'], $row['user_id'], $row['role'];
-
-                        header("location: post.php");
+                        if ($row['role'] > 1) {
+                            echo "Sorry!! You have no permission!";                            
+                        } else {
+                            session_start();
+                            $_SESSION['username'] = $row['username'];
+                            $_SESSION['user_id'] = $row['user_id'];
+                            $_SESSION['user_role'] = $row['role'];
+                            header("location: post.php");
+                        }
                     }
                 } else {
                     echo "Username or Password is incorrect.";
