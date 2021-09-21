@@ -45,36 +45,37 @@ if (!isset($_SESSION['username'])) {
             <?php
             include "./admin/config.php";
 
-            if (isset($_GET['cid'])) {
-                $cat_id = $_GET['cid'];
-            }
             $user_id = $_SESSION['user_id'];
+            $user_name = $_SESSION['username'];
+            $user_role = $_SESSION['user_role'];
 
-            $query = "SELECT * FROM category WHERE post > 0";
-            $result = mysqli_query($connection, $query) or die("Category query failed!");
+            $value = basename($_SERVER['PHP_SELF']);
+            if ($value == 'home.php') {
+                $activeHome = 'active';
+            } else if ($value == 'favourites.php') {
+                $activeFavourites = 'active';
+            } else if ($value == 'about-us.php') {
+                $activeAboutUs = 'active';
+            }
 
-            if (mysqli_num_rows($result)) {
-                $active = "";
 
             ?>
 
             <ul class="navbar-nav">
+                <li class='nav-item <?php echo $activeHome ?>'>
+                    <a class='nav-link' href='home.php?'>Home</a>
+                </li>
                 <?php
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        if (isset($_GET['cid'])) {
-                            if ($row['category_id']  == $cat_id) {
-                                $active = "active";
-                            } else {
-                                $active = "";
-                            }
-                        }
-
-                        echo "<li class='nav-item {$active}'>
-                            <a class='nav-link' href='category.php?cid={$row['category_id']}'>{$row['category_name']}</a>
+                    if ($user_role != 2) {
+                        echo "<li class='nav-item {$activeFavourites}'>
+                                <a class='nav-link' href='favourites.php?'>Favourites</a>
                             </li>";
                     }
-                }
                 ?>
+                
+                <li class='nav-item <?php echo $activeAboutUs ?>'>
+                    <a class='nav-link' href='about-us.php?'>About Us</a>
+                </li>
             </ul>
 
                 <!-- Dropdown -->
