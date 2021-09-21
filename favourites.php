@@ -41,8 +41,8 @@ $count = mysqli_num_rows($result);
     <div class="row">
         <div class="col-md-12" style="margin-top: 3em;">
             <div class="card">
-                <div class="card-header text-muted">
-                    <h3>Favourites</h3>
+                <div class="card-header inline-text text-muted">
+                    <h4><i class="fas fa-star"> Favourites </i></h4>
                 </div>
             </div>
             <?php
