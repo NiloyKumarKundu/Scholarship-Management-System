@@ -43,15 +43,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" name="first_name" class="form-control" placeholder="First Name">
-                    <input type="text" name="last_name" class="form-control" placeholder="Last Name">
+                    <input type="text" required name="first_name" class="form-control" placeholder="First Name">
+                    <input type="text" required name="last_name" class="form-control" placeholder="Last Name">
                 </div><!-- form-group// -->
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user-tie"></i> </span>
                     </div>
-                    <input name="username" class="form-control" placeholder="Username" type="text">
+                    <input name="username" required class="form-control" placeholder="Username" type="text">
                 </div> <!-- form-group// -->
                 <div style="margin-top: -1em;" id="user">
                     <small class="text-danger">Username has already taken. Please try another one.</small>
@@ -62,14 +62,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
-                    <input name="email" class="form-control" placeholder="Email address" type="email">
+                    <input name="email" required class="form-control" placeholder="Email address" type="email">
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fas fa-lock"></i> </span>
                     </div>
-                    <input class="form-control" name="password" placeholder="Create password" type="password">
+                    <input class="form-control" required name="password" placeholder="Create password" type="password">
                 </div> <!-- form-group// -->
 
 
@@ -78,21 +78,21 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
                     </div>
-                    <input name="phone_no" class="form-control" placeholder="Phone number" type="text">
+                    <input name="phone_no" required class="form-control" placeholder="Phone number" type="text">
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-address-card"></i></span>
                     </div>
-                    <input name="address" class="form-control" placeholder="Address" type="text">
+                    <input name="address" required class="form-control" placeholder="Address" type="text">
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></i></span>
                     </div>
-                    <input name="dob" class="form-control" placeholder="Date of Birth" type="date">
+                    <input name="dob" required class="form-control" placeholder="Date of Birth" type="date">
                 </div> <!-- form-group// -->
 
 
