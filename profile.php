@@ -137,7 +137,7 @@
                             <div class="col-sm-9 text-secondary">
                                 <?php
                                      $mysqlDate = strtotime($row['dob']);
-                                     $phpDate = date( 'd F,Y', $mysqlDate );
+                                     $phpDate = date( 'd F, Y', $mysqlDate );
                                      echo $phpDate;
                                 ?>
                             </div>
