@@ -30,10 +30,6 @@
         
         ?>
 
-
-
-
-
         <!-- /Breadcrumb -->
 
         <div class="row gutters-sm">

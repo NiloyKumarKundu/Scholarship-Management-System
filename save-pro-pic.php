@@ -1,4 +1,6 @@
 <?php
+include './header.php';
+
 include "./admin/config.php";
 if (isset($_FILES['fileToUpload'])) {
     $errors = array();
@@ -7,7 +9,9 @@ if (isset($_FILES['fileToUpload'])) {
     $file_size = $_FILES['fileToUpload']['size'];
     $file_tmp = $_FILES['fileToUpload']['tmp_name'];
     $file_type = $_FILES['fileToUpload']['type'];
-    $file_ext = end(explode('.', $file_name));
+    
+    $temp = explode('.', $file_name);
+    $file_ext = end($temp);
 
     $extensions = array("jpeg", "jpg", "png");
 
@@ -19,12 +23,12 @@ if (isset($_FILES['fileToUpload'])) {
         $errors[] = "File size must be 2mb or lower.";
     }
     $new_name = time() . "-" . basename($file_name);
-    $target = "./ProPic//" . $new_name;
+    $target = "./ProPic/" . $new_name;
 
     if (empty($errors) == true) {
         move_uploaded_file($file_tmp, $target);
 
-        $sql = "INSERT INTO propic FROM users WHERE user_id = {$user_id}";
+        $sql = "UPDATE users SET propic = '{$new_name}' WHERE user_id = {$user_id}";
 
         if (mysqli_multi_query($connection, $sql)) {
             header("location: ./profile.php");
@@ -36,5 +40,12 @@ if (isset($_FILES['fileToUpload'])) {
         die();
     }
 }
+?>
+
+<div style="min-height: 800px;"></div>
+
+<?php
+
+include './footer.php';
 
 ?>
