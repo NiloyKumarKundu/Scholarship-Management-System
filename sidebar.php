@@ -54,7 +54,7 @@
     ?>
 
 
-    <div class="recent-post-container">
+    <div class="recent-post-container" style="margin-bottom: 1em;">
         <h4>Recent Posts</h4>
         <?php
         if (mysqli_num_rows($result)) {

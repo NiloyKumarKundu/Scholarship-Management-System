@@ -37,7 +37,7 @@ $result = mysqli_query($connection, $query) or die('Query failed');
 $count = mysqli_num_rows($result);
 ?>
 
-<div class="container">
+<div class="container" style="min-height: 800px;">
     <div class="row">
         <div class="col-md-12" style="margin-top: 3em;">
             <div class="card">
@@ -71,17 +71,23 @@ $count = mysqli_num_rows($result);
                                 <?php echo substr(strip_tags($row['description']), 0, 250); ?>...
                             </p>
 
-                            <a href="./single.php?id=<?php echo $row['post_id'];?>" class="btn btn-primary float-right" style="margin-left: 1em;">Read</a>
-                            <a href="" class="btn btn-primary float-right">Remove</a>
+                            <a href="./single.php?id=<?php echo $row['post_id']; ?>" class="btn btn-success float-right" style="margin-left: 1em;">Read More</a>
+                            <a href="./removeFav.php?id=<?php echo $row['post_id'] ?>" onclick="return confirm('Are You Sure?')" class="btn btn-danger float-right">Remove</a>
                         </div>
                     </div>
                 <?php
                 }
                 ?>
-                <div style="margin-bottom: 3em;"></div>
             <?php
             } else {
+            ?>
 
+                <div class="card-body">
+                    <div class="post-information">
+                        <h5 class="card-text">No items have been selected yet.</h5>
+                    </div>
+                </div>
+            <?php
             }
             ?>
 

@@ -41,7 +41,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="./ProPic/avatar7.png" alt="" class="rounded-circle" width="150">
+                            <img src="./ProPic/<?php echo $row['propic'] ?>" alt="" class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <h4><?php echo $row['username'] ?></h4>
                                 <p class="text-secondary mb-1">Full Stack Developer</p>
@@ -238,7 +238,7 @@
         </div>
         <?php }} ?>
     </div>
-    <div style="margin-bottom: 5em"></div>
+    <div style="margin-bottom: 1em"></div>
 
 </div>
 </div>

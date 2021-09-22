@@ -201,8 +201,8 @@ form{
 
 
 .brandImg {
-    height: 25px;
-    width: 35px;
+    height: 27px;
+    width: 33px;
 }
 
 .right-control {
@@ -551,8 +551,6 @@ i.fa{
 #sidebar .recent-post a.read-more:hover{
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
-
-
 
 
 

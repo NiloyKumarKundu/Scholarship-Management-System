@@ -46,8 +46,8 @@
                     ?>
                             <div class="post-content">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <a class="post-img" href="single.php?id=<?php echo $row['post_id'] ?>"><img src="./admin/upload/<?php echo $row['post_img'] ?>" alt="" /></a>
+                                    <div class="col-md-4 mt-2 mt-lg-0">
+                                        <a class="post-img" href="single.php?id=<?php echo $row['post_id'] ?>"><img  src="./admin/upload/<?php echo $row['post_img'] ?>" alt="" /></a>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="inner-content clearfix">

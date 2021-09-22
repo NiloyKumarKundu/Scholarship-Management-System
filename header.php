@@ -81,11 +81,21 @@ if (!isset($_SESSION['username'])) {
                 </li>
             </ul>
 
+            <?php
+                $query = "SELECT propic FROM users WHERE user_id = {$user_id}";
+
+                $result = mysqli_query($connection, $query);
+                $count = mysqli_num_rows($result);
+                if ($count > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+            
+            ?>
+
             <!-- Dropdown -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        <img src="./images/pro.png" class="rounded-circle brandImg" alt="" />
+                        <img src="./ProPic/<?php echo $row['propic'] ?>" class="rounded-circle brandImg" alt="" />
                     </a>
                     <div class="dropdown-menu bg-secondary bg-gradient dropdown-menu-right">
                         <a class="dropdown-item" href="profile.php">Profile</a>
@@ -94,5 +104,10 @@ if (!isset($_SESSION['username'])) {
                     </div>
                 </li>
             </ul>
+            <?php }
+                } else {
+
+                }
+                ?>
         </nav>
     </header>
