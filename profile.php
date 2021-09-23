@@ -2,20 +2,23 @@
 
 <div class="container">
     <div class="main-body">
+        <?php
+        $status = 'none';
+        if (isset($_GET['id'])) {
+            $status = $_GET['id'];
+        }
 
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-                <!-- <div class="breadcrumb-item"> -->
-                <li class="text-secondary" style="margin-top: 0.4em; margin-right: 1em;">
-                    <h6>Want to be a moderator?</h6>
-                </li>
-                <!-- </div> -->
-                <li class="breadcrumb-item">
-                    <button class="btn btn-sm btn-success"><a href="#" style="color: #fff;">Apply Now!</a></button>
-                </li>
-            </ol>
-        </nav>
+        $query = "SELECT * FROM request WHERE user_id = {$user_id}";
+
+        $result = mysqli_query($connection, $query) or die('Query Failed');
+        $r_status = 'none';
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $r_status = $row['r_status'];
+            }
+        }
+
+        ?>
 
         <?php
         // if(isset())
@@ -25,7 +28,7 @@
         $result = mysqli_query($connection, $query) or die("Query failed!");
 
         $query2 = "SELECT * FROM subscription WHERE user_id = {$user_id}";
-        $result2 = mysqli_query($connection ,$query2);
+        $result2 = mysqli_query($connection, $query2);
 
         if (mysqli_num_rows($result)) {
             $row2 = mysqli_fetch_assoc($result2);
@@ -35,6 +38,65 @@
             while ($row = mysqli_fetch_assoc($result)) {
 
         ?>
+
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb" class="main-breadcrumb">
+                    <ol class="breadcrumb">
+                        <!-- <div class="breadcrumb-item"> -->
+                        <li class="text-secondary" style="margin-top: 0.4em; margin-right: 1em;">
+                            <?php
+                            if ($status == 'success') {
+                            ?>
+                                <h6>Your application has been submitted successfully.
+                                    Please wait for admin's approval.</h6>
+                            <?php
+                            } else {
+                            ?>
+                                <?php
+                                if ($r_status == 'pending') {
+                                ?>
+                                    <h6>Your request is pending. Please wait for admin's approval.</h6>
+                                <?php
+                                } else if ($r_status == 'approved') {
+                                ?>
+                                    <h6>You are in user mode. To switch in moderator mode just </h6>
+
+                                <?php
+                                } else {
+                                ?>
+                                    <h6>Want to be a moderator?</h6>
+                                <?php
+                                }
+                                ?>
+                            <?php
+                            }
+
+                            ?>
+                        </li>
+                        <!-- </div> -->
+                        <?php
+                        if ($r_status == 'approved') {
+                        ?>
+                            <li class="breadcrumb-item">
+                                <button class="btn btn-sm btn-success">
+                                    <a href="./admin/post.php" style="color: #fff;">Click Here!</a>
+                                </button>
+                            </li>
+                        <?php
+                        } else if ($status != 'success' && $r_status != 'pending') {
+                        ?>
+                            <li class="breadcrumb-item">
+                                <button class="btn btn-sm btn-success"><a href="./applynow.php" style="color: #fff;">Apply Now!</a></button>
+                            </li>
+                        <?php
+                        }
+
+                        ?>
+
+                    </ol>
+                </nav>
+
+
 
                 <!-- /Breadcrumb -->
 
@@ -233,22 +295,15 @@
                                         <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Account</i></h6>
 
                                         <?php
-                                        if ($row2['cur_status'] == 'pending' && $row['role'] == 2) {
+                                        if ($row2['cur_status'] == 'pending') {
                                         ?>
                                             <small class="mb-0">
-                                                Your premium request has been approved. <br> 
+                                                Your premium request has been approved. <br>
                                                 Please wait for admin approval. <br>
                                                 Thank you!
                                             </small>
                                         <?php
-                                        } else if ($row['role'] == 2) {
-                                        ?>
-                                            <small class="mb-0">To experience the amazing premium features...</small>
-                                            <a href="upgrade.php" class="btn btn-success btn-sm btn-block" role="button">Upgrade Now!</a>
-
-                                        <?php
-
-                                        } else {
+                                        } else if ($row2['cur_status'] == 'approved') {
                                         ?>
                                             <small class="mb-0">Congratulations!! You have successfully upgrade to premium user. <br></small>
 
@@ -256,8 +311,12 @@
                                             $mysqlDate = strtotime($row2['expire_date']);
                                             $phpDate = date('d F, Y', $mysqlDate);
                                             ?>
-
                                             <h6 class="text-muted">Expired on: <?php echo $phpDate ?> </h6>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <small class="mb-0">To experience the amazing premium features...</small>
+                                            <a href="upgrade.php" class="btn btn-success btn-sm btn-block" role="button">Upgrade Now!</a>
                                         <?php
                                         }
                                         ?>

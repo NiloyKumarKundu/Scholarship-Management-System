@@ -1,12 +1,9 @@
 <?php 
 include "header.php";
 
-if ($_SESSION['user_role'] == '0') {
-  header("location: post.php");
-} else if ($_SESSION['user_role'] > 1) {
+if ($_SESSION['user_role'] > 1) {
   header("location: ../index.php");
 }
-
 ?>
 
 <div id="admin-content">

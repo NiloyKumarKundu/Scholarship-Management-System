@@ -33,10 +33,15 @@
                 $result = mysqli_query($connection, $query) or die("Failed");
                 $count = mysqli_num_rows($result);
 
-                $query2 = "SELECT COUNT(fav_id) AS cnt from favourite WHERE user_id = {$_SESSION['user_id']} && post_id = {$post_id}";
+                $query2 = "SELECT COUNT(fav_id) AS cnt FROM favourite WHERE user_id = {$_SESSION['user_id']} && post_id = {$post_id}";
                 $result2 = mysqli_query($connection, $query2);
-                $favourite = mysqli_num_rows($result2);
+                // $favourite = mysqli_num_rows($result2);
                 $row2 = mysqli_fetch_assoc($result2);
+
+
+                $query3 = "SELECT cur_status FROM subscription WHERE user_id = {$user_id}";
+                $result3 = mysqli_query($connection, $query3);
+                $row3 = mysqli_fetch_assoc($result3);
 
                 if ($count > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -65,7 +70,7 @@
                                         </span>
 
                                         <?php
-                                            if ($user_role != 2) {
+                                            if ($row3['cur_status'] == 'approved') {
                                                 if ($row2['cnt']) {
                                                     echo '<a href="./save-post.php?id='.$post_id.'&value=0"><i class="fas fa-star"></i>Remove From Favourite</a>';
                                                 } else {

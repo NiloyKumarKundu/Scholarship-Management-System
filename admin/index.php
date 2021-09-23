@@ -73,7 +73,7 @@ if (isset($_SESSION['username'])) {
 
                     while ($row = mysqli_fetch_assoc($result)) {
                         if ($row['role'] > 1) {
-                            echo "Sorry!! You have no permission!";                            
+                            echo "Sorry!! You have no permission!";                  
                         } else {
                             session_start();
                             $_SESSION['username'] = $row['username'];

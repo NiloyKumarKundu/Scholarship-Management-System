@@ -49,6 +49,10 @@ if (!isset($_SESSION['username'])) {
             $post = '';
             $category = '';
             $user = '';
+            $user_id = $_SESSION['user_id'];
+            $user_name = $_SESSION['username'];
+
+
             if ($value == 'post.php') {
                 $post = 'active';
             } else if ($value == 'category.php') {
@@ -57,9 +61,10 @@ if (!isset($_SESSION['username'])) {
                 $user = 'active';
             } else if ($value == 'premium.php') {
                 $premium = 'active';
+            } else if ($value == 'moderator_request.php') {
+                $moderator = 'active';
             }
             ?>
-
 
             <ul class="navbar-nav">
                 <li class="nav-item <?php echo $post ?>">
@@ -76,6 +81,9 @@ if (!isset($_SESSION['username'])) {
                     <li class="nav-item <?php echo $premium ?>">
                         <a class='nav-link' href="./premium.php">Premium Request</a>
                     </li>
+                    <li class="nav-item <?php echo $moderator ?>">
+                        <a class='nav-link' href="./request.php">Moderator Request</a>
+                    </li>
                 <?php } ?>
             </ul>
 
@@ -87,8 +95,14 @@ if (!isset($_SESSION['username'])) {
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class='nav-link' href="../home.php">
+                    <i class="fas fa-exchange-alt"></i>
+                        </span><?php echo "User Mode" ?>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class='nav-link' href="./logout.php">
-                    <i class="fas fa-sign-out-alt"></i> Logout</a>
+                        <i class="fas fa-sign-out-alt"></i> Logout</a>
                 </li>
             </ul>
         </nav>
