@@ -48,7 +48,15 @@ if (!isset($_SESSION['username'])) {
 
             $user_id = $_SESSION['user_id'];
             $user_name = $_SESSION['username'];
-            $user_role = $_SESSION['user_role'];
+
+            $query = "SELECT * FROM users WHERE user_id = {$user_id}";
+            $result = mysqli_query($connection, $query);
+            if (mysqli_num_rows($result) > 0) {                
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $user_role = $row['role'];
+                }
+
+            }
 
             $value = basename($_SERVER['PHP_SELF']);
             if ($value == 'home.php') {
