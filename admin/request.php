@@ -70,7 +70,7 @@
 
 
                                     <td class='delete'>
-                                        <a style="color: #302f2f;" onclick="return confirm('Are You Sure?')" href='delete-moderator.php?id=<?php echo $row['user_id'] ?>'>
+                                        <a style="color: #302f2f;" onclick="return confirm('Are You Sure?')" href='delete_moderator.php?id=<?php echo $row['user_id'] ?>'>
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
