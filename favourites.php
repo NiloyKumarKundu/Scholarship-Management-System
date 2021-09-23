@@ -71,8 +71,8 @@ $count = mysqli_num_rows($result);
                                 <?php echo substr(strip_tags($row['description']), 0, 250); ?>...
                             </p>
 
-                            <a href="./single.php?id=<?php echo $row['post_id']; ?>" class="btn btn-success float-right" style="margin-left: 1em;">Read More</a>
-                            <a href="./removeFav.php?id=<?php echo $row['post_id'] ?>" onclick="return confirm('Are You Sure?')" class="btn btn-danger float-right">Remove</a>
+                            <a href="./single.php?id=<?php echo $row['post_id']; ?>" class="btn btn-success btn-sm float-right" style="margin-left: 1em;">Read More</a>
+                            <a href="./removeFav.php?id=<?php echo $row['post_id'] ?>" onclick="return confirm('Are You Sure?')" class="btn btn-danger btn-sm float-right">Remove</a>
                         </div>
                     </div>
                 <?php

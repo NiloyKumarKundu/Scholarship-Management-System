@@ -116,8 +116,6 @@ if ($_SESSION['user_role'] == '0') {
             }
             if ($page_number < $total_page) {
               echo '<li class="page-item"><a class="page-link" href="users.php?page=' . ($page_number + 1) . '">Next</a></li>';
-
-              echo '<li><a href="">Next</a></li>';
             }
             echo "</ul>";
           }

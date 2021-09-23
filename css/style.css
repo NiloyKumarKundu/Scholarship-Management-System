@@ -319,21 +319,6 @@ form{
     margin:0 0 10px;
 }
 
-#main-content .post-content a.read-more{
-    color: #fff;
-    background-color: #333333;
-    font-size: 12px;
-    text-transform: capitalize;
-    padding: 3px 8px;
-    border-radius: 2px;
-    transition: all 0.3s;
-}
-
-#main-content .post-content a.read-more:hover{
-    color: #fff;
-    background-color: #333;
-}
-
 #main-content .single-post{
     border: none;
     margin-bottom: 0;

@@ -55,6 +55,8 @@ if (!isset($_SESSION['username'])) {
                 $category = 'active';
             } else if ($value == 'users.php') {
                 $user = 'active';
+            } else if ($value == 'premium.php') {
+                $premium = 'active';
             }
             ?>
 
@@ -70,6 +72,9 @@ if (!isset($_SESSION['username'])) {
                     </li>
                     <li class="nav-item <?php echo $user ?>">
                         <a class='nav-link' href="./users.php">User</a>
+                    </li>
+                    <li class="nav-item <?php echo $premium ?>">
+                        <a class='nav-link' href="./premium.php">Premium Request</a>
                     </li>
                 <?php } ?>
             </ul>
