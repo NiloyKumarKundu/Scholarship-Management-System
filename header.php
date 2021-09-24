@@ -122,6 +122,8 @@ if (!isset($_SESSION['username'])) {
                     <div class="dropdown-menu bg-secondary bg-gradient dropdown-menu-right">
                         <a class="dropdown-item" href="profile.php">Profile</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="./change-password.php">Change Password</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="./logout.php">Logout</a>
                     </div>
                 </li>

@@ -61,7 +61,7 @@ if (!isset($_SESSION['username'])) {
                 $user = 'active';
             } else if ($value == 'premium.php') {
                 $premium = 'active';
-            } else if ($value == 'moderator_request.php') {
+            } else if ($value == 'request.php') {
                 $moderatorReq = 'active';
             } else if ($value == 'premium-users.php') {
                 $premiumUser = 'active';

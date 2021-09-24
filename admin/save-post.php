@@ -34,13 +34,12 @@ session_start();
 $title = mysqli_real_escape_string($connection, $_POST['post_title']);
 $description = mysqli_real_escape_string($connection, $_POST['postdesc']);
 $category = mysqli_real_escape_string($connection, $_POST['category']);
+$has_premium = mysqli_real_escape_string($connection, $_POST['has_premium']);
 $date = date("d M, Y");
 $author = $_SESSION['user_id'];
 
-$sql = "INSERT INTO post(title, description,category,post_date,author,post_img)
-          VALUES('{$title}','{$description}',{$category},'{$date}',{$author},'{$new_name}');";
-
-$sql .= "UPDATE category SET post = post + 1 WHERE category_id = {$category}";
+$sql = "INSERT INTO post(title, description, category, post_date, author, post_img, has_premium)
+          VALUES('{$title}','{$description}',{$category},'{$date}',{$author},'{$new_name}', '{$has_premium}');";
 
 if (mysqli_multi_query($connection, $sql)) {
   header("location: post.php");

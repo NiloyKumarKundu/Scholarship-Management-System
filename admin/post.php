@@ -85,12 +85,19 @@ if ($_SESSION['user_role'] > 1) {
                     <i class="fas fa-trash"></i>
                     </a>
                   </td>
-
-
                 </tr>
               <?php } ?>
             </tbody>
-          <?php } ?>
+          <?php } else {
+            ?>
+
+              <h4>No post to show.</h4>
+
+
+            <?php
+          }
+          
+          ?>
           </table>
 
           <?php

@@ -5,7 +5,7 @@
 <div id="admin-content">
     <div class="container">
         <div class="row">
-            <div class="col-md-12" style= "margin-top: 0.5em;">
+            <div class="col-md-12" style="margin-top: 0.5em;">
                 <h1 class="admin-heading">Add New Post</h1>
             </div>
             <div class="col-md-offset-3 col-md-6" style="margin-left: 15em; margin-top: 2em;">
@@ -42,6 +42,28 @@
                             ?>
                         </select>
                     </div>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-search-dollar"></i>
+                            </span>
+                        </div>
+                        <div class="form-check-inline" style="margin-left: 1em;">
+                            <input class="form-check-input" checked type="radio" name="has_premium" value="NO">
+                            <label class="form-check-label">
+                                Free
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" name="has_premium" value="YES">
+                            <label class="form-check-label">
+                                Premium
+                            </label>
+                        </div>
+                    </div>
+
+
                     <div class="form-group">
                         <label for="exampleInputPassword1">Post image</label>
                         <br>
