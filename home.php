@@ -19,23 +19,50 @@
 
                     $offset = ($page_number - 1) * $limit;
 
-                    $query =    "SELECT post.post_id,
-                                        post.title,
-                                        post.description,
-                                        post.post_img, 
-                                        post.post_date,
-                                        post.category, 
-                                        post.author,
-                                        category.category_name,
-                                        users.username 
-                                FROM post
-                                LEFT JOIN category
-                                ON 
-                                post.category = category.category_id
-                                LEFT JOIN users 
-                                ON 
-                                post.author = users.user_id
-                                ORDER BY post.post_id DESC LIMIT {$offset},{$limit}";
+
+                    $query = "SELECT * FROM subscription WHERE user_id = {$user_id}";
+
+                    $result = mysqli_query($connection, $query);
+                    $rowcnt = mysqli_num_rows($result);
+
+                    if (!$rowcnt) {
+                        $query = "  SELECT  post.post_id,
+                                            post.title,
+                                            post.description,
+                                            post.post_img, 
+                                            post.post_date,
+                                            post.category, 
+                                            post.author,
+                                            category.category_name,
+                                            users.username 
+                                    FROM    post
+                                    LEFT JOIN category
+                                    ON 
+                                    post.category = category.category_id
+                                    LEFT JOIN users 
+                                    ON 
+                                    post.author = users.user_id
+                                    WHERE   has_premium = 'NO'
+                                    ORDER BY post.post_id DESC LIMIT {$offset},{$limit}";
+                    } else {
+                        $query = "  SELECT  post.post_id,
+                                            post.title,
+                                            post.description,
+                                            post.post_img, 
+                                            post.post_date,
+                                            post.category, 
+                                            post.author,
+                                            category.category_name,
+                                            users.username 
+                                    FROM post
+                                    LEFT JOIN category
+                                    ON 
+                                    post.category = category.category_id
+                                    LEFT JOIN users 
+                                    ON 
+                                    post.author = users.user_id
+                                    ORDER BY post.post_id DESC LIMIT {$offset},{$limit}";
+                    }
 
                     $result = mysqli_query($connection, $query) or die("Failed");
                     $count = mysqli_num_rows($result);
@@ -47,7 +74,7 @@
                             <div class="post-content">
                                 <div class="row">
                                     <div class="col-md-4 mt-2 mt-lg-0">
-                                        <a class="post-img" href="single.php?id=<?php echo $row['post_id'] ?>"><img  src="./admin/upload/<?php echo $row['post_img'] ?>" alt="" /></a>
+                                        <a class="post-img" href="single.php?id=<?php echo $row['post_id'] ?>"><img src="./admin/upload/<?php echo $row['post_img'] ?>" alt="" /></a>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="inner-content clearfix">
