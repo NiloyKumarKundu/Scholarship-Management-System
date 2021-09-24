@@ -96,7 +96,11 @@ if ($_SESSION['user_role'] > 1) {
           <?php
 
           include "config.php";
-          $query2 = "SELECT * FROM post WHERE post.author = {$_SESSION['user_id']}";
+          if ($_SESSION['user_role'] == 1) {
+            $query2 = "SELECT * FROM post";
+          } else {
+            $query2 = "SELECT * FROM post WHERE post.author = {$_SESSION['user_id']}";
+          }
           $result2 = mysqli_query($connection, $query2) or dir("Failed.");
           if (mysqli_num_rows($result2)) {
             $total_records = mysqli_num_rows($result2);

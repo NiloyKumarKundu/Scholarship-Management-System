@@ -1,8 +1,19 @@
-<?php include "header.php";
+<?php 
 
-if ($_SESSION['user_role'] == '0') {
+include "header.php";
+include "config.php";
+$post_id = $_GET['id'];
+
+$query = "SELECT * FROM post WHERE post_id = {$post_id}";
+$result = mysqli_query($connection, $query);
+$row = mysqli_fetch_assoc($result);
+
+if ($_SESSION['user_role'] > 1) {
+  header("location: post.php");
+} else if ($_SESSION['user_role'] == '0' && $row['author'] != $_SESSION['user_id']) {
   header("location: post.php");
 }
+
 
 ?>
 <div id="admin-content">
@@ -14,10 +25,7 @@ if ($_SESSION['user_role'] == '0') {
       <div class="col-md-offset-3 col-md-6" style="margin-left: 15em; margin-bottom: 1em;">
         <!-- Form for show edit-->
 
-        <?php
-        include "config.php";
-        $post_id = $_GET['id'];
-
+        <?php        
         $query = "SELECT post.post_id, post.title, post.description, post.post_img, post.category, category.category_name FROM post
         LEFT JOIN category ON post.category = category.category_id
         LEFT JOIN users ON post.author = users.user_id
