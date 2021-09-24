@@ -19,19 +19,33 @@
     <link rel="stylesheet" href="./css/font-awesome.css">
     <script src="./jquery.js"></script>
     <script>
-    $flag = true;
-    if ($flag) {
-        $(document).ready(function() {
-            $('#user').hide();
-        });
-    }
+        $flag = true;
+        if ($flag) {
+            $(document).ready(function() {
+                $('#user').hide();
+            });
+        }
     </script>
 </head>
 
 <body>
 
+
+
+    <?php
+    include './admin/config.php';
+
+    $query = "SELECT * FROM category";
+    $result = mysqli_query($connection, $query);
+    $cnt = mysqli_num_rows($result);
+
+
+    ?>
+
+
+
     <div class="card bg-light">
-        <article class="card-body col-md-6" style="margin-left: 23em; height: 800px; margin-top: 6em;">
+        <article class="card-body col-md-6" style="margin-left: 23em; height: 800px; margin-top: 3em;">
             <h4 class="card-title mt-3 text-center">Create Account</h4>
             <p class="text-center">Get started with your free account</p>
 
@@ -43,15 +57,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" required name="first_name" class="form-control" placeholder="First Name">
-                    <input type="text" required name="last_name" class="form-control" placeholder="Last Name">
+                    <input type="text"  name="first_name" class="form-control" placeholder="First Name">
+                    <input type="text"  name="last_name" class="form-control" placeholder="Last Name">
                 </div><!-- form-group// -->
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user-tie"></i> </span>
                     </div>
-                    <input name="username" required class="form-control" placeholder="Username" type="text">
+                    <input name="username"  class="form-control" placeholder="Username" type="text">
                 </div> <!-- form-group// -->
                 <div style="margin-top: -1em;" id="user">
                     <small class="text-danger">Username has already taken. Please try another one.</small>
@@ -62,14 +76,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
-                    <input name="email" required class="form-control" placeholder="Email address" type="email">
+                    <input name="email"  class="form-control" placeholder="Email address" type="email">
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fas fa-lock"></i> </span>
                     </div>
-                    <input class="form-control" required name="password" placeholder="Create password" type="password">
+                    <input class="form-control"  name="password" placeholder="Create password" type="password">
                 </div> <!-- form-group// -->
 
 
@@ -78,26 +92,29 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
                     </div>
-                    <input name="phone_no" required class="form-control" placeholder="Phone number" type="text">
+                    <input name="phone_no"  class="form-control" placeholder="Phone number" type="text">
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-address-card"></i></span>
                     </div>
-                    <input name="address" required class="form-control" placeholder="Address" type="text">
+                    <input name="address"  class="form-control" placeholder="Address" type="text">
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></i></span>
                     </div>
-                    <input name="dob" required class="form-control" placeholder="Date of Birth" type="date">
+                    <input name="dob"  class="form-control" placeholder="Date of Birth" type="date">
                 </div> <!-- form-group// -->
 
 
                 <div class="form-group input-group">
-                    <div class="form-check-inline">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                    </div>
+                    <div class="form-check-inline" style="margin-left: 1em;">
                         <input class="form-check-input" type="radio" name="gender" value="Male" checked>
                         <label class="form-check-label">
                             Male
@@ -117,13 +134,37 @@
                     </div>
                 </div>
 
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fas fa-heart"></i> </span>
+                    </div>
+                    <input class="form-control" disabled placeholder="Interested Category" type="text">
+                </div>
+
+                <div class="form-group input-group">
+                    <?php if ($cnt > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                            <div class="form-check-inline" style="margin-left: 1em;">
+                                <input class="form-check-input" type="checkbox" name="category[]" value=<?php echo  $row['category_id'] ?>>
+                                <label class="form-check-label">
+                                    <?php echo  $row['category_name'] ?>
+                                </label>
+                            </div>
+                    <?php }
+                    } ?>
+                </div>
+
+
                 <div class="form-group">
                     <input type="submit" name="submit" value="Create Account" class="btn btn-primary btn-block">
                 </div> <!-- form-group// -->
                 <p class="text-center">Have an account? <a href="index.php">Log In</a> </p>
             </form>
             <?php
-            include './admin/config.php';
+
+
             if (isset($_POST['submit'])) {
                 $first_name = mysqli_real_escape_string($connection, $_POST['first_name']);
                 $last_name = mysqli_real_escape_string($connection, $_POST['last_name']);
@@ -137,6 +178,7 @@
                 $tempTime = strtotime($dob);
                 $mysqltime = date('Y/m/d H:i:s', $tempTime);
                 $date_of_birth = mysqli_real_escape_string($connection, $mysqltime);
+                $category = $_POST['category'];
 
 
                 $query2 = "SELECT username FROM users WHERE username = '{$username}'";
@@ -157,6 +199,20 @@
                     $query = "INSERT INTO users(first_name, last_name, username, email, password, address, gender, phone_no, dob) VALUES('{$first_name}', '{$last_name}', '{$username}', '{$email}', '{$password}', '{$address}', '{$gender}', '{$phone_no}', '{$date_of_birth}')";
 
                     if (mysqli_query($connection, $query)) {
+
+                        $temp = "SELECT user_id FROM users WHERE username = '{$username}'";
+                        $result = mysqli_query($connection, $temp);
+                        $cnt = mysqli_num_rows($result);
+                        if ($cnt > 0) {
+                            $row = mysqli_fetch_assoc($result);
+                            echo $row['user_id'];
+                        }
+
+                        foreach($category as $key=> $values) {
+                            $query = "INSERT INTO interestedCategory(user_id, category_id) VALUES ({$row['user_id']}, {$values})";
+                            $result = mysqli_query($connection, $query) or die('Category Failed');
+                        }
+
                         echo '<script>alert("Registration Successfull!\nPlease Log In.")</script>';
                     } else {
                         echo "Username or Password is incorrect.";
@@ -172,4 +228,3 @@
 </body>
 
 </html>
-
