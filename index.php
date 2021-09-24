@@ -76,14 +76,44 @@
                     if (mysqli_num_rows($result) > 0) {
 
                         while ($row = mysqli_fetch_assoc($result)) {
+                            $query = "SELECT expire_date FROM subscription WHERE user_id = '{$row['user_id']}'";
+                            $result = mysqli_query($connection, $query);
+                            $cnt = mysqli_num_rows($result);
 
-                            session_start();
+                            if ($cnt > 0) {
+                                while ($newRow = mysqli_fetch_assoc($result)) {
+                                    if (date("Y-m-d") <= $newRow['expire_date'] ) {
+                                        session_start();
 
-                            $_SESSION['username'] = $row['username'];
-                            $_SESSION['user_id'] = $row['user_id'];
-                            $_SESSION['user_role'] = $row['role'];
+                                        $_SESSION['username'] = $row['username'];
+                                        $_SESSION['user_id'] = $row['user_id'];
+                                        $_SESSION['user_role'] = $row['role'];
 
-                            header("location: home.php");
+                                        header("location: home.php");
+                                    } else {
+                                        $newQuery = "DELETE FROM subscription WHERE user_id = {$row['user_id']}";
+                                        if (mysqli_query($connection, $newQuery)) {
+                                            session_start();
+
+                                            $_SESSION['username'] = $row['username'];
+                                            $_SESSION['user_id'] = $row['user_id'];
+                                            $_SESSION['user_role'] = $row['role'];
+
+                                            header("location: home.php");
+                                        } else {
+                                            echo "Failed";
+                                        }
+                                    }
+                                }
+                            } else {
+                                session_start();
+
+                                $_SESSION['username'] = $row['username'];
+                                $_SESSION['user_id'] = $row['user_id'];
+                                $_SESSION['user_role'] = $row['role'];
+
+                                header("location: home.php");
+                            }
                         }
                     } else {
                         echo "Username or Password is incorrect.";

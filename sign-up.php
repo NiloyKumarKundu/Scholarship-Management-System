@@ -205,7 +205,6 @@
                         $cnt = mysqli_num_rows($result);
                         if ($cnt > 0) {
                             $row = mysqli_fetch_assoc($result);
-                            echo $row['user_id'];
                         }
 
                         foreach($category as $key=> $values) {

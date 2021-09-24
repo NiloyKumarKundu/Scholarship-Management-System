@@ -100,8 +100,6 @@
                     </ol>
                 </nav>
 
-
-
                 <!-- /Breadcrumb -->
 
                 <div class="row gutters-sm">
@@ -275,21 +273,42 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <?php
+                            $newQuery =     "SELECT category_name
+                                                FROM category
+                                                WHERE category_id = ANY (
+                                                    SELECT category_id
+                                                    FROM interestedCategory
+                                                    WHERE user_id = 31
+                                                )";
+
+                            $newRes = mysqli_query($connection, $newQuery);
+                            $cntRes = mysqli_num_rows($newRes);
+
+                            ?>
+
+
+
                             <div class="col-sm-5 mb-3">
                                 <div class="card h-50">
                                     <div class="card-body">
                                         <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Interested Category</i></h6>
                                         <div class="row">
                                             <div class="col text-secondary">
-                                                <!-- <div class="alert alert-secondary" role="alert">
-                                            This is a secondary alert—check it out!
-                                        </div> -->
-                                                <small class="badge-pill badge-dark">CSE</small>
-                                                <small class="badge-pill badge-dark">EEE</small>
-                                                <small class="badge-pill badge-dark">BBA</small>
-                                                <small class="badge-pill badge-dark">Music</small>
-                                                <small class="badge-pill badge-dark">Civil</small>
-                                                <small class="badge-pill badge-dark">Category 6 </small>
+                                                <?php
+                                                if ($cntRes > 0) {
+                                                while ($newValue = mysqli_fetch_assoc($newRes)) {
+                                                    foreach ($newValue as $key => $value) {
+                                                ?>
+                                                        <small class="badge-pill badge-dark"><?php echo $value ?></small>
+                                                <?php
+                                                    }
+                                                }
+                                            } else {
+                                                echo "<small> You haven't select any category </small>";
+                                            }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
@@ -301,12 +320,12 @@
                                         <?php
 
                                         if ($row['role'] == 1) {
-                                            ?>
+                                        ?>
                                             <small class="mb-0">
                                                 For being the admin, you don't need any premium access. <br>
                                                 Thank you!
                                             </small>
-                                            <?php
+                                        <?php
                                         } else if ($row2['cur_status'] == 'pending') {
                                         ?>
                                             <small class="mb-0">
@@ -328,7 +347,7 @@
                                         } else {
                                         ?>
                                             <small class="mb-0">To experience the amazing premium features...</small>
-                                            <a href="upgrade.php" class="btn btn-success btn-sm btn-block" role="button">Upgrade Now!</a>
+                                            <a href="upgrade.php" style="margin-bottom: 2em;" class="btn btn-success btn-sm btn-block" role="button">Upgrade Now!</a>
                                         <?php
                                         }
                                         ?>
@@ -342,7 +361,6 @@
         <?php }
         } ?>
     </div>
-    <div style="margin-bottom: 1em"></div>
 
 </div>
 </div>

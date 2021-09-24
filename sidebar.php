@@ -18,7 +18,12 @@
     include './admin/config.php';
     $role = $_SESSION['user_role'];
 
-    if ($role == 2) {
+    $query = "SELECT * FROM subscription WHERE user_id = {$user_id}";
+
+    $result = mysqli_query($connection, $query);
+    $rowcnt = mysqli_num_rows($result);
+
+    if (!$rowcnt) {
         $query = "SELECT    post.post_id,
                             post.title,
                             post.post_img, 
@@ -31,7 +36,7 @@
                     ON 
                     post.category = category.category_id
                     WHERE has_premium = 'NO'
-                    ORDER BY post.post_id DESC LIMIT 0, 5";
+                    ORDER BY rand() LIMIT 0, 5";
     } else {
         $query = "SELECT    post.post_id,
                             post.title,
