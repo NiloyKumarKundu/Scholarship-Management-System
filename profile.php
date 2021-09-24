@@ -79,7 +79,7 @@
                         </li>
                         <!-- </div> -->
                         <?php
-                        if (($r_status == 'approved' && $status == '') || $row['role'] == 1) {
+                        if (($r_status == 'approved' && $status == 'none') || $row['role'] == 1) {
                         ?>
                             <li class="breadcrumb-item">
                                 <button class="btn btn-sm btn-success">

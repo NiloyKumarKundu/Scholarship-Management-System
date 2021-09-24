@@ -1,4 +1,5 @@
 <?php
+ob_start();
     include './config.php';
     include './header.php';
 
@@ -13,7 +14,7 @@
     } else {
         echo "Query failed!";
     }
-
+    ob_end_flush();
 ?>
 
 
