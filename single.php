@@ -19,10 +19,9 @@
                                     post.category,
                                     category.category_name,
                                     users.username,
-                                    post.author,
-                                    users.fav
+                                    post.author
                             FROM post
-                            LEFT JOIN category 
+                            LEFT JOIN category
                             ON 
                             post.category = category.category_id
                             LEFT JOIN users
@@ -32,7 +31,6 @@
 
                 $result = mysqli_query($connection, $query) or die("Failed");
                 $count = mysqli_num_rows($result);
-
                 $query2 = "SELECT COUNT(fav_id) AS cnt FROM favourite WHERE user_id = {$_SESSION['user_id']} && post_id = {$post_id}";
                 $result2 = mysqli_query($connection, $query2);
                 // $favourite = mysqli_num_rows($result2);
@@ -47,8 +45,6 @@
                     while ($row = mysqli_fetch_assoc($result)) {
 
                 ?>
-
-
                         <div class="post-container">
                             <div class="post-content">
                                 <div class="single-post">
@@ -91,8 +87,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                 <?php
                     }
                 } else {
