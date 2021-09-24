@@ -10,10 +10,7 @@ if ($_SESSION['user_role'] == '0') {
   <div class="container">
     <div class="row">
       <div class="col-md-10">
-        <h1 class="admin-heading">All Users</h1>
-      </div>
-      <div class="col-md-2">
-        <a class="add-new" href="add-user.php">add user</a>
+        <h1 class="admin-heading">Premium Users</h1>
       </div>
       <div class="col-md-12">
 
@@ -29,7 +26,16 @@ if ($_SESSION['user_role'] == '0') {
         $limit = 5;
         $offset = ($page_number - 1) * $limit;
 
-        $query = "SELECT * FROM users ORDER BY user_id DESC LIMIT {$offset}, {$limit}";
+        $query =    "SELECT * 
+                    FROM users u
+                    LEFT JOIN 
+                    subscription s
+                    ON u.user_id = s.user_id
+                    WHERE s.cur_status = 'approved'
+                    ORDER BY u.user_id
+                    DESC LIMIT {$offset}, {$limit}";
+
+
         $result = mysqli_query($connection, $query) or die("failed!");
         $count = mysqli_num_rows($result);
 
@@ -76,7 +82,7 @@ if ($_SESSION['user_role'] == '0') {
 
 
                   <td class='delete'>
-                    <a style="color: #302f2f;" onclick="return confirm('Are You Sure?')" href='delete-user.php?id=<?php echo $row['user_id'] ?>'>
+                    <a style="color: #302f2f;" onclick="return confirm('Are You Sure?')" href='delete-premium.php?id=<?php echo $row['user_id'] ?>&page=pu'>
                       <i class="fas fa-trash"></i>
                     </a>
                   </td>
@@ -90,7 +96,7 @@ if ($_SESSION['user_role'] == '0') {
 
           <?php
           include './config.php';
-          $query2 = "SELECT * FROM users";
+          $query2 = "SELECT * FROM users WHERE role = 0";
           $result2 = mysqli_query($connection, $query2) or die("failed");
 
           if (mysqli_num_rows($result2)) {

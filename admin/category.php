@@ -29,11 +29,20 @@ if ($_SESSION['user_role'] == '0') {
         }
 
         $offset = ($page_number - 1) * $limit;
+        $query = "SELECT category_name, category, COUNT(post_id) AS cnt
+                  FROM post 
+                  JOIN 
+                  category 
+                  ON category.category_id = post.category
+                  GROUP BY category
+                  ORDER BY cnt DESC
+                  LIMIT {$offset}, {$limit}";
 
 
-        $query = "SELECT * FROM category ORDER BY category_id DESC LIMIT {$offset}, {$limit}";
         $result = mysqli_query($connection, $query) or die("Failed");
         $count = mysqli_num_rows($result);
+
+
 
         if ($count > 0) {
 
@@ -56,25 +65,18 @@ if ($_SESSION['user_role'] == '0') {
                 <tr>
                   <td class='id'><?php echo $serial_number++ ?></td>
                   <td><?php echo $row['category_name'] ?></td>
-                  <td><?php echo $row['post'] ?></td>
-
-
+                  <td><?php echo $row['cnt'] ?></td>
                   <td class='edit'>
                     <a style="color: #302f2f;" href='update-category.php?id=<?php echo $row['category_id'] ?>'>
                       <i class="fas fa-edit"></i>
                     </a>
                   </td>
-
-
                   <td class='delete'>
                     <a style="color: #302f2f;" onclick="return confirm('Are You Sure?')" href='delete-category.php?id=<?php echo $row['category_id'] ?>'>
                       <i class="fas fa-trash"></i>
                     </a>
                   </td>
-
-
                 </tr>
-
               <?php } ?>
 
             </tbody>

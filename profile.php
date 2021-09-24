@@ -1,7 +1,7 @@
 <?php include './header.php' ?>
 
 <div class="container">
-    <div class="main-body">
+    <div class="main-body" style="min-height: 760px;">
         <?php
         $status = 'none';
         if (isset($_GET['id'])) {
@@ -62,6 +62,10 @@
                                     <h6>You are in user mode. To switch in moderator mode just </h6>
 
                                 <?php
+                                } else if ($row['role'] == 1) {
+                                ?>
+                                    <h6>You are in user mode. To switch in Admin mode just </h6>
+                                <?php
                                 } else {
                                 ?>
                                     <h6>Want to be a moderator?</h6>
@@ -75,7 +79,7 @@
                         </li>
                         <!-- </div> -->
                         <?php
-                        if ($r_status == 'approved') {
+                        if (($r_status == 'approved' && $status == '') || $row['role'] == 1) {
                         ?>
                             <li class="breadcrumb-item">
                                 <button class="btn btn-sm btn-success">
@@ -295,7 +299,15 @@
                                         <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Account</i></h6>
 
                                         <?php
-                                        if ($row2['cur_status'] == 'pending') {
+
+                                        if ($row['role'] == 1) {
+                                            ?>
+                                            <small class="mb-0">
+                                                For being the admin, you don't need any premium access. <br>
+                                                Thank you!
+                                            </small>
+                                            <?php
+                                        } else if ($row2['cur_status'] == 'pending') {
                                         ?>
                                             <small class="mb-0">
                                                 Your premium request has been approved. <br>

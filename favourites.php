@@ -77,6 +77,38 @@ $count = mysqli_num_rows($result);
                     </div>
                 <?php
                 }
+
+
+                $query2 = "SELECT * FROM favourite";
+                $result2 = mysqli_query($connection, $query2) or dir("Failed.");
+                if (mysqli_num_rows($result2)) {
+                    $total_records = mysqli_num_rows($result2);
+                    $total_page = ceil($total_records / $limit);
+
+                    echo "<nav aria-label='Page navigation example'>";
+                    echo "<ul class='pagination justify-content-center'>";
+                    if ($page_number > 1) {
+                        echo '<li class="page-item">';
+                        echo '<a class="page-link" href="favourites.php?cid=' . $rcv_cid . '&page=' . ($page_number - 1) . '">Previous</a>';
+                        echo "</li>";
+                    }
+
+                    for ($i = 1; $i <= $total_page; $i++) {
+                        if ($i == $page_number) {
+                            $active = "active";
+                        } else {
+                            $active = "";
+                        }
+                        echo '<li class="page-item ' . $active . '">';
+                        echo '<a class="page-link" href="favourites.php?cid=' . $rcv_cid . '&page=' . $i . '">' . $i . '</a></li>';
+                    }
+                    if ($total_page > $page_number) {
+                        echo '<li class="page-item"><a class="page-link" href="favourites.php?cid=' . $rcv_cid . '&page=' . ($page_number + 1) . '">Next</a></li>';
+                    }
+                    echo "</ul>";
+                }
+
+
                 ?>
             <?php
             } else {

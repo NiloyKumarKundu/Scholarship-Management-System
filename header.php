@@ -49,6 +49,7 @@ if (!isset($_SESSION['username'])) {
             $user_id = $_SESSION['user_id'];
             $user_name = $_SESSION['username'];
 
+
             $query = "SELECT * FROM subscription WHERE user_id = {$user_id}";
             $result = mysqli_query($connection, $query);
             $user_status = "none";
@@ -58,6 +59,18 @@ if (!isset($_SESSION['username'])) {
                 }
 
             }
+
+            $query = "SELECT * FROM users WHERE user_id = {$user_id}";
+            $result = mysqli_query($connection, $query);
+            $user_role = '0';
+            if (mysqli_num_rows($result) > 0) {                
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $user_role = $row['role'];
+                }
+            }
+
+
+
 
             $value = basename($_SERVER['PHP_SELF']);
             if ($value == 'home.php') {
@@ -76,7 +89,7 @@ if (!isset($_SESSION['username'])) {
                     <a class='nav-link' href='home.php?'>Home</a>
                 </li>
                 <?php
-                if ($user_status == 'approved') {
+                if ($user_status == 'approved' || $user_role == 1) {
                 ?>
                     <li class='nav-item <?php echo $activeFavourites ?>'>
                         <a class='nav-link' href='favourites.php?'>Favourites</a>

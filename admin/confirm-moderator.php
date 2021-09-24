@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include './header.php';
 include './config.php';
 $id = $_GET['id'];
@@ -15,3 +16,6 @@ if (mysqli_query($connection, $query)) {
 } else {
     echo "Query failed";
 }
+ob_end_flush();
+?>
+

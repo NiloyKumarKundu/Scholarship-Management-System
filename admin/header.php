@@ -62,6 +62,10 @@ if (!isset($_SESSION['username'])) {
             } else if ($value == 'premium.php') {
                 $premium = 'active';
             } else if ($value == 'moderator_request.php') {
+                $moderatorReq = 'active';
+            } else if ($value == 'premium-users.php') {
+                $premiumUser = 'active';
+            } else if ($value == 'moderators.php') {
                 $moderator = 'active';
             }
             ?>
@@ -78,10 +82,16 @@ if (!isset($_SESSION['username'])) {
                     <li class="nav-item <?php echo $user ?>">
                         <a class='nav-link' href="./users.php">User</a>
                     </li>
+                    <li class="nav-item <?php echo $premiumUser ?>">
+                        <a class='nav-link' href="./premium-users.php">Premium Users</a>
+                    </li>
+                    <li class="nav-item <?php echo $moderator ?>">
+                        <a class='nav-link' href="./moderators.php">Moderators</a>
+                    </li>
                     <li class="nav-item <?php echo $premium ?>">
                         <a class='nav-link' href="./premium.php">Premium Request</a>
                     </li>
-                    <li class="nav-item <?php echo $moderator ?>">
+                    <li class="nav-item <?php echo $moderatorReq ?>">
                         <a class='nav-link' href="./request.php">Moderator Request</a>
                     </li>
                 <?php } ?>
