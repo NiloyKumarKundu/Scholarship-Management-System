@@ -237,7 +237,7 @@ include './header.php'; ?>
                                                     <i class="fas fa-globe"></i>
                                                 </span>
                                             </div>
-                                            <input class="form-control" name="website" value="<?php echo $row['website'] ?>" placeholder="Website Link (ex: www.google.com)" type="text">
+                                            <input class="form-control" name="website" value="<?php echo $row['website'] ?>" placeholder="Website Link (ex: google.com)" type="text">
                                         </div>
 
                                         <div class="form-group input-group">
@@ -313,6 +313,7 @@ include './header.php'; ?>
                 $github = mysqli_real_escape_string($connection, $_POST['github']);
                 $instragram = mysqli_real_escape_string($connection, $_POST['instragram']);
                 $facebook = mysqli_real_escape_string($connection, $_POST['facebook']);
+                $twitter = mysqli_real_escape_string($connection, $_POST['twitter']);
 
 
 
@@ -332,7 +333,8 @@ include './header.php'; ?>
                             website = '{$website}',
                             github = '{$github}',
                             instragram = '{$instragram}',
-                            facebook = '{$facebook}'
+                            facebook = '{$facebook}',
+                            twitter = '{$twitter}'
                             WHERE user_id = {$user_id}";
 
                 if (mysqli_query($connection, $query)) {

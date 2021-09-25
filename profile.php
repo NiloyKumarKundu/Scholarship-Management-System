@@ -124,11 +124,11 @@
                             if ($row['website']) {
                                 $OriginalString = $row['website'];
                                 $newString = explode(".", $OriginalString);
-                                $website = $newString;
+                                $website = $newString[0];
                                 $websiteLink = 'http://'.$row['website'];
                             } else {
-                                $newString = "Not Added";
-                                $websiteLink = '$';
+                                $website = "Not Added";
+                                $websiteLink = '#';
                             }
                             
                             if ($row['github']) {
@@ -162,6 +162,39 @@
                                 $facebook = "Not Added";
                                 $facebookLink =  '#';
                             }
+
+
+                            if ($row['country']) {
+                                $country = $row['country'];
+                            } else {
+                                $country = "Not Added";
+                            }
+
+                            if ($row['nationality']) {
+                                $nationality = $row['nationality'];
+                            } else {
+                                $nationality = "Not Added";
+                            }
+
+
+                            if ($row['school']) {
+                                $school = $row['school'];
+                            } else {
+                                $school = "Not Added";
+                            }
+
+                            if ($row['college']) {
+                                $college = $row['college'];
+                            } else {
+                                $college = "Not Added";
+                            }
+
+                            if ($row['university']) {
+                                $university = $row['university'];
+                            } else {
+                                $university = "Not Added";
+                            }
+
                         ?>
 
                         <div class="card mt-3">
@@ -172,7 +205,7 @@
                                             <line x1="2" y1="12" x2="22" y2="12"></line>
                                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                                         </svg>Website</h6>
-                                    <span class="text-secondary"><a href="<?php echo $websiteLink ?>"><?php echo $website[0] ?></a></span>
+                                    <span class="text-secondary"><a href="<?php echo $websiteLink ?>"><?php echo $website ?></a></span>
                                 </li>
 
                                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -279,7 +312,7 @@
                                                 <small class="mb-0">Country</small>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <small class="mb-0">Bangladesh</small>
+                                                <small class="mb-0"><?php echo $country ?></small>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -287,7 +320,7 @@
                                                 <small class="mb-0">Nationality</small>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <small class="mb-0">Bangladeshi</small>
+                                                <small class="mb-0"><?php echo $nationality ?></small>
                                             </div>
                                         </div>
                                         <br>
@@ -297,7 +330,7 @@
                                                 <small class="mb-0">School</small>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <small class="mb-0">Biggan School</small>
+                                                <small class="mb-0"><?php echo $school ?></small>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -305,7 +338,7 @@
                                                 <small class="mb-0">College</small>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <small class="mb-0">New Govt. Degree College</small>
+                                                <small class="mb-0"><?php echo $college ?></small>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -313,7 +346,7 @@
                                                 <small class="mb-0">University</small>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <small class="mb-0">UIU</small>
+                                                <small class="mb-0"><?php echo $university ?></small>
                                             </div>
                                         </div>
                                     </div>
@@ -391,7 +424,7 @@
                                         } else {
                                         ?>
                                             <small class="mb-0">To experience the amazing premium features...</small>
-                                            <a href="upgrade.php" class="btn btn-primary btn-sm btn-block" role="button">Upgrade Now!</a>
+                                            <a href="upgrade.php" class="btn btn-primary btn-sm btn-block" role="button" style="margin-bottom: 1.5em;">Upgrade Now!</a>
                                         <?php
                                         }
                                         ?>
