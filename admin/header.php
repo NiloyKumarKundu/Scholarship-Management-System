@@ -111,6 +111,12 @@ if (!isset($_SESSION['username'])) {
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class='nav-link' href="./change-password.php">
+                    <i class="fas fa-lock"></i>
+                        </span><?php echo "Change Password" ?>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class='nav-link' href="./logout.php">
                         <i class="fas fa-sign-out-alt"></i> Logout</a>
                 </li>

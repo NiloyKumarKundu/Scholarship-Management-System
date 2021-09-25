@@ -5,13 +5,13 @@
 <div id="main-content">
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-3 col-md-6" style="margin-left: 17em; margin-top: 8em;">
+            <div class="col-md-offset-3 col-md-6" style="margin-left: 17em; margin-top: 10em; min-height:600px">
                 <div class="card-header" style="background-color: #c8cccb;">
                     <h4>Change Password</h4>
                 </div>
 
                 <?php
-                include './admin/config.php';
+                include './config.php';
                 $query = "SELECT * FROM users WHERE user_id = {$user_id}";
                 $result = mysqli_query($connection, $query);
                 $cnt = mysqli_num_rows($result);
@@ -65,8 +65,8 @@
 
                                     $query = "UPDATE users SET password = '{$new_password}' WHERE user_id = {$user_id}";
                                     if (mysqli_query($connection, $query)) {
-                                        echo '<script>alert("Password changed successfully")</script>';
-                                        header("location: ./profile.php");
+                                        echo '<script>alert("Password Changed Successfully")</script>';
+                                        header("location: ./post.php");
                                     } else {
                                         echo "Query failed";
                                     }
@@ -77,7 +77,6 @@
                                 echo "Current password is wrong!";
                             }
                         }
-                        ob_end_flush();
 
                         ?>
 
@@ -87,6 +86,7 @@
                     </div>
                 </form>
                 <!--/Form -->
+                <?php ob_end_flush(); ?>
             </div>
         </div>
     </div>
