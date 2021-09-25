@@ -1,6 +1,6 @@
 <?php
+ob_start();
 include "header.php";
-
 if ($_SESSION['user_role'] == '0') {
     header("location: post.php");
 }
@@ -95,11 +95,9 @@ if (isset($_POST['submit'])) {
                 <?php
                     }
                 }
+                ob_end_flush();
 
                 ?>
-
-
-
             </div>
         </div>
     </div>

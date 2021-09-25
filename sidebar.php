@@ -23,7 +23,20 @@
     $result = mysqli_query($connection, $query);
     $rowcnt = mysqli_num_rows($result);
 
-    if (!$rowcnt) {
+    if ($user_role == 1) {
+        $query =    "SELECT post.post_id,
+                            post.title,
+                            post.post_img, 
+                            post.post_date,
+                            post.category, 
+                            post.has_premium,
+                            category.category_name
+                    FROM post
+                    LEFT JOIN category
+                    ON 
+                    post.category = category.category_id
+                    ORDER BY rand() LIMIT 0, 5";
+    } else if (!$rowcnt) {
         $query = "SELECT    post.post_id,
                             post.title,
                             post.post_img, 
@@ -58,9 +71,18 @@
 
     ?>
 
-
     <div class="recent-post-container" style="margin-bottom: 1em;">
-        <h4>Recent Posts</h4>
+        <?php
+            if ($user_role == 1) {
+                echo "<h4>All Posts</h4>";
+            } else if (!$rowcnt) {
+                echo "<h4>Recent Posts</h4>";
+            } else {
+                echo "<h4>Premium Posts</h4>";
+            }
+        
+        ?>
+        
         <?php
         if (mysqli_num_rows($result)) {
             while ($row = mysqli_fetch_assoc($result)) {

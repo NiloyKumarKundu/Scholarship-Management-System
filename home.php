@@ -25,7 +25,25 @@
                     $result = mysqli_query($connection, $query);
                     $rowcnt = mysqli_num_rows($result);
 
-                    if (!$rowcnt) {
+                    if ($rowcnt || $user_role == 1) {
+                        $query = "  SELECT  post.post_id,
+                                            post.title,
+                                            post.description,
+                                            post.post_img, 
+                                            post.post_date,
+                                            post.category, 
+                                            post.author,
+                                            category.category_name,
+                                            users.username 
+                                    FROM post
+                                    LEFT JOIN category
+                                    ON 
+                                    post.category = category.category_id
+                                    LEFT JOIN users 
+                                    ON 
+                                    post.author = users.user_id
+                                    ORDER BY post.post_id DESC LIMIT {$offset},{$limit}";
+                    } else {
                         $query = "  SELECT  post.post_id,
                                             post.title,
                                             post.description,
@@ -44,24 +62,7 @@
                                     post.author = users.user_id
                                     WHERE   has_premium = 'NO'
                                     ORDER BY post.post_id DESC LIMIT {$offset},{$limit}";
-                    } else {
-                        $query = "  SELECT  post.post_id,
-                                            post.title,
-                                            post.description,
-                                            post.post_img, 
-                                            post.post_date,
-                                            post.category, 
-                                            post.author,
-                                            category.category_name,
-                                            users.username 
-                                    FROM post
-                                    LEFT JOIN category
-                                    ON 
-                                    post.category = category.category_id
-                                    LEFT JOIN users 
-                                    ON 
-                                    post.author = users.user_id
-                                    ORDER BY post.post_id DESC LIMIT {$offset},{$limit}";
+                        
                     }
 
                     $result = mysqli_query($connection, $query) or die("Failed");

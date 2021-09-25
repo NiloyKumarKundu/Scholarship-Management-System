@@ -97,7 +97,6 @@ if (!isset($_SESSION['username'])) {
                 <?php
                 }
                 ?>
-
                 <li class='nav-item <?php echo $activeAboutUs ?>'>
                     <a class='nav-link' href='about-us.php?'>About Us</a>
                 </li>

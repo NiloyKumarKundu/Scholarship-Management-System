@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include "config.php";
 
 if(empty($_FILES['new-image']['name'])){
@@ -58,7 +59,7 @@ if($result){
 }else{
   echo "Query Failed";
 }
-
+ob_end_flush();
 
 
 

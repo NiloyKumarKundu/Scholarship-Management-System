@@ -1,5 +1,5 @@
 <?php 
-
+ob_start();
 include "header.php";
 include "config.php";
 $post_id = $_GET['id'];

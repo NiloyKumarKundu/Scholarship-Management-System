@@ -66,7 +66,7 @@
                                         </span>
 
                                         <?php
-                                            if ($row3['cur_status'] == 'approved') {
+                                            if ($row3['cur_status'] == 'approved' || $user_role == 1) {
                                                 if ($row2['cnt']) {
                                                     echo '<a href="./save-post.php?id='.$post_id.'&value=0"><i class="fas fa-star"></i>Remove From Favourite</a>';
                                                 } else {
