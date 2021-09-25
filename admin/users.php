@@ -62,8 +62,10 @@ if ($_SESSION['user_role'] == '0') {
                     <?php
                     if ($row['role'] == 1) {
                       echo "Admin";
-                    } else {
+                    } else if ($row['role'] == 0) {
                       echo "Modarator";
+                    } else {
+                      echo "User";
                     }
                     ?>
                   </td>

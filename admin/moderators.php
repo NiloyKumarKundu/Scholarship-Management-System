@@ -80,7 +80,16 @@ if ($_SESSION['user_role'] == '0') {
 
             </tbody>
 
-          <?php } ?>
+          <?php } else {
+            ?>
+            <div class="container">
+              <h4>No users found!</h4>
+            </div>
+          <?php
+          }
+          
+          
+          ?>
           </table>
 
           <?php
